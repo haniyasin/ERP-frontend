@@ -1,0 +1,14 @@
+/* we use css here because MUI does not have styled image components */
+img {
+  margin: auto;
+  width: 80%;
+  border-radius: 200px;
+}
+
+.nav img {
+  width: 3%;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  margin-right: 10px;
+}
