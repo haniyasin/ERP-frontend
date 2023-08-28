@@ -5,8 +5,8 @@ import { Role } from "../interfaces/Role";
 
 interface Roles {
   roles: Role[];
-  isLoading: boolean,
-  getRoles: () => void,
+  isLoading: boolean;
+  getRoles: () => void;
 }
 
 interface RoleProviderProps {
@@ -24,29 +24,25 @@ const RoleProvider = ({ children }: RoleProviderProps) => {
   const getRoles = () => {
     setIsLoading(true);
     get("/roles")
-    .then(res => {
-      if(res) {
-        setRoles(res.data);
-        setIsLoading(false);
-      }
-    })
-    .catch(err => {
+      .then((res) => {
+        if (res) {
+          setRoles(res.data);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
         toast.error(`Error: ${err}`);
         setIsLoading(false);
-    })
-  }
+      });
+  };
 
   const value = {
     roles,
     isLoading,
-    getRoles,
+    getRoles
   };
 
-  return (
-    <RoleContext.Provider value={value}>
-      { children }
-    </RoleContext.Provider>
-  );
-}
+  return <RoleContext.Provider value={value}>{children}</RoleContext.Provider>;
+};
 
 export default RoleProvider;

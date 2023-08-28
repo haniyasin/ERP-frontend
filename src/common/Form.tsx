@@ -22,7 +22,7 @@ const Form: FunctionComponent<PropsWithChildren<FormProps>> = ({
 }) => {
   const methods = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: defaultValues || {},
+    defaultValues: defaultValues || {}
   });
 
   return (
@@ -36,7 +36,8 @@ const Form: FunctionComponent<PropsWithChildren<FormProps>> = ({
           methods.handleSubmit(onSubmit)(event);
         }}
         {...rest}
-        noValidate>
+        noValidate
+      >
         {children}
       </Box>
     </FormProvider>

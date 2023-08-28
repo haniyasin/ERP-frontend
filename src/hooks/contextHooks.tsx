@@ -13,21 +13,33 @@ const useCustomContext = (Context: Context<any>, errorMessage: string) => {
 };
 
 export const useUser = () => {
-  const context = useCustomContext(UserContext, 'useUser must be used within a UserProvider');
+  const context = useCustomContext(
+    UserContext,
+    "useUser must be used within a UserProvider"
+  );
   return context;
 };
 
 export const useRole = () => {
-  const context = useCustomContext(RoleContext, 'useRole must be used within a RoleProvider');
+  const context = useCustomContext(
+    RoleContext,
+    "useRole must be used within a RoleProvider"
+  );
   return context;
 };
 
 export const useAuth = () => {
-  const context = useCustomContext(AuthContext, 'useAuth must be used within an AuthProvider');
+  const context = useCustomContext(
+    AuthContext,
+    "useAuth must be used within an AuthProvider"
+  );
   return context;
 };
 
 export const useDepartment = () => {
-  const context = useCustomContext(DepartmentContext, 'useDepartment must be used within an AuthProvider');
+  const context = useCustomContext(
+    DepartmentContext,
+    "useDepartment must be used within an AuthProvider"
+  );
   return context;
 };

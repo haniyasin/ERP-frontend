@@ -1,4 +1,4 @@
-import jwtDecode, { JwtPayload } from 'jwt-decode';
+import jwtDecode, { JwtPayload } from "jwt-decode";
 
 export const checkTokenExpiration = (token: string): boolean => {
   try {
@@ -8,8 +8,7 @@ export const checkTokenExpiration = (token: string): boolean => {
     if (decoded.exp && decoded.exp < currentTime) return false;
 
     return true;
-  } 
-  catch {
+  } catch {
     return false;
   }
 };

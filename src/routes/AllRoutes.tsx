@@ -9,56 +9,56 @@ import Admin from "../pages/admin/AdminDashboard";
 import EmployeeDashboard from "../pages/hr/EmployeeDashboard";
 
 export interface IRoute {
-  path: string,
-  Element: () => React.JSX.Element,
-  allowedRoles: string[],
+  path: string;
+  Element: () => React.JSX.Element;
+  allowedRoles: string[];
 }
 
 export const protectedRoutes: IRoute[] = [
   {
-      path: '/',
-      Element: Departments,
-      allowedRoles: ['ADMIN', 'EMPLOYEE', 'HR', 'FIN', 'BDM'],
+    path: "/",
+    Element: Departments,
+    allowedRoles: ["ADMIN", "EMPLOYEE", "HR", "FIN", "BDM"]
   },
   {
-      path: '/admin',
-      Element: Admin,
-      allowedRoles: ['ADMIN'],
+    path: "/admin",
+    Element: Admin,
+    allowedRoles: ["ADMIN"]
   },
   {
-      path: '/hr',
-      Element: Hr,
-      allowedRoles: ['ADMIN', 'HR'],
+    path: "/hr",
+    Element: Hr,
+    allowedRoles: ["ADMIN", "HR"]
   },
   {
-      path: '/fin',
-      Element: Finance,
-      allowedRoles: ['ADMIN', 'FIN'],
+    path: "/fin",
+    Element: Finance,
+    allowedRoles: ["ADMIN", "FIN"]
   },
   {
-      path: '/bdm',
-      Element: Bdm,
-      allowedRoles: ['ADMIN', 'BDM'],
+    path: "/bdm",
+    Element: Bdm,
+    allowedRoles: ["ADMIN", "BDM"]
   },
   {
-    path: '/employee-dashboard/:employeeId',
+    path: "/employee-dashboard/:employeeId",
     Element: EmployeeDashboard,
-    allowedRoles: ['ADMIN', 'HR'],
+    allowedRoles: ["ADMIN", "HR"]
   },
   {
-      path: '/profile',
-      Element: Profile,
-      allowedRoles: ['ADMIN','EMPLOYEE', 'HR', 'FIN', 'BDM'],
-  },
+    path: "/profile",
+    Element: Profile,
+    allowedRoles: ["ADMIN", "EMPLOYEE", "HR", "FIN", "BDM"]
+  }
 ];
 
 export const routes = [
   {
-      path: "/unauthorized",
-      Element: Unauthorized,
+    path: "/unauthorized",
+    Element: Unauthorized
   },
   {
-      path: "*",
-      Element: NotFound,
-  },
+    path: "*",
+    Element: NotFound
+  }
 ];

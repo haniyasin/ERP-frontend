@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
 interface StyledProfilePictureProps {
   src: string;
@@ -8,23 +8,34 @@ interface StyledProfilePictureProps {
   margin?: string;
 }
 
-const StyledProfilePicture = ({ src, width, height, margin }: StyledProfilePictureProps) => {
+const StyledProfilePicture = ({
+  src,
+  width,
+  height,
+  margin
+}: StyledProfilePictureProps) => {
   return (
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
-      width={width || '150px'}
-      height={height || '150px'}
+      width={width || "150px"}
+      height={height || "150px"}
       borderRadius="50%"
       border="2px solid #ccc"
       overflow="hidden"
-      margin={margin || '20px auto'}
+      margin={margin || "20px auto"}
       position="relative"
     >
-      {src !== '' 
-      ? <img src={src} alt="Employee" style={{ width: '100%', height: 'auto', objectFit: 'cover' }}/>
-      : <Typography>Employee</Typography>}
+      {src !== "" ? (
+        <img
+          src={src}
+          alt="Employee"
+          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+        />
+      ) : (
+        <Typography>Employee</Typography>
+      )}
     </Box>
   );
 };

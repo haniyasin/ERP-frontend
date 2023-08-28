@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import ModalBox from '../../../common/ModalBox';
-import { Button, Stack, Typography, FormControl, SelectChangeEvent } from '@mui/material';
-import { useUser } from '../../../hooks/contextHooks';
-import { toast } from 'react-toastify';
-import SelectField from '../../../common/SelectField';
-import Form from '../../../common/Form';
-import { deleteEmployeeSchema } from '../form schemas/deleteEmployeeSchema';
-import InputField from '../../../common/InputField';
+import React, { useState } from "react";
+import ModalBox from "../../../common/ModalBox";
+import {
+  Button,
+  Stack,
+  Typography,
+  FormControl,
+  SelectChangeEvent
+} from "@mui/material";
+import { useUser } from "../../../hooks/contextHooks";
+import { toast } from "react-toastify";
+import SelectField from "../../../common/SelectField";
+import Form from "../../../common/Form";
+import { deleteEmployeeSchema } from "../form schemas/deleteEmployeeSchema";
+import InputField from "../../../common/InputField";
 
 interface DeleteEmployeeModalProps {
-  isOpen: boolean,
-  closeModal: () => void,
+  isOpen: boolean;
+  closeModal: () => void;
 }
 
-const DeleteEmployeeModal = ({ isOpen, closeModal }: DeleteEmployeeModalProps) => {
+const DeleteEmployeeModal = ({
+  isOpen,
+  closeModal
+}: DeleteEmployeeModalProps) => {
   const { openedEmployee, deleteEmployee } = useUser();
-  const [reason, setReason] = useState<string>('1');
+  const [reason, setReason] = useState<string>("1");
   const [document, setDocument] = useState<File | null>(null);
 
   const handleReasonChange = (event: SelectChangeEvent<string>) => {
@@ -23,31 +32,39 @@ const DeleteEmployeeModal = ({ isOpen, closeModal }: DeleteEmployeeModalProps) =
   };
 
   const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) 
-      setDocument(event.target.files[0]);
+    if (event.target.files) setDocument(event.target.files[0]);
   };
 
   const handleDeleteEmployee = () => {
-    if (reason === '1')
-      return toast.error("Please select a valid reason");
-    if (reason === '3' && !document)
+    if (reason === "1") return toast.error("Please select a valid reason");
+    if (reason === "3" && !document)
       return toast.error("Document for leaving employee must be uploaded!");
 
-    deleteEmployee({email: openedEmployee.email, reason, document})
-      .then((res: any) => {
-        if(res) {
-          toast.success("Successfully deleted Employee")
+    deleteEmployee({ email: openedEmployee.email, reason, document }).then(
+      (res: any) => {
+        if (res) {
+          toast.success("Successfully deleted Employee");
           closeModal();
         }
-      })
+      }
+    );
   };
 
-  const reasons = [{name: "Please Select a Reason", id: "1"}, {name: "Mistakenly created employee", id: "2"}, {name: "Employee left the company", id: "3"}]
+  const reasons = [
+    { name: "Please Select a Reason", id: "1" },
+    { name: "Mistakenly created employee", id: "2" },
+    { name: "Employee left the company", id: "3" }
+  ];
 
   return (
     <ModalBox open={isOpen} onClose={closeModal}>
-      <Typography variant="h6" textAlign="center">Are you sure you want to delete this user?</Typography>
-      <Form onSubmit={handleDeleteEmployee} validationSchema={deleteEmployeeSchema}>
+      <Typography variant="h6" textAlign="center">
+        Are you sure you want to delete this user?
+      </Typography>
+      <Form
+        onSubmit={handleDeleteEmployee}
+        validationSchema={deleteEmployeeSchema}
+      >
         <FormControl fullWidth>
           <SelectField
             name="reason"
@@ -70,8 +87,12 @@ const DeleteEmployeeModal = ({ isOpen, closeModal }: DeleteEmployeeModalProps) =
           />
         )}
         <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
-          <Button type="submit" variant="contained">Yes</Button>
-          <Button onClick={closeModal} variant="contained">No</Button>
+          <Button type="submit" variant="contained">
+            Yes
+          </Button>
+          <Button onClick={closeModal} variant="contained">
+            No
+          </Button>
         </Stack>
       </Form>
     </ModalBox>
