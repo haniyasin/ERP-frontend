@@ -26,7 +26,7 @@ const Providers: IProvider[] = [
   { Provider: AuthProvider },
   { Provider: UserProvider },
   { Provider: RoleProvider },
-  { Provider: DepartmentProvider },
+  { Provider: DepartmentProvider }
 ];
 
 export { Providers };

@@ -1,13 +1,21 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React, { useCallback } from 'react'
-import { User } from '../../interfaces/User';
-import { useUser } from '../../hooks/contextHooks';
-import { formatHeaders } from '../../utils/formatHeaders';
-import { theme } from '../../styles/Theme';
-import joinArrayItemNames from '../../utils/joinArrayItemNames';
-import StyledProfilePicture from '../../styles/styled components/StyledProfilePicture';
-import { extractProfilePicture } from '../../utils/extractProfilePicture';
-import { formatDateToLocaleTime } from '../../utils/formatDataToLocaleTime';
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
+} from "@mui/material";
+import React, { useCallback } from "react";
+import { User } from "../../interfaces/User";
+import { useUser } from "../../hooks/contextHooks";
+import { formatHeaders } from "../../utils/formatHeaders";
+import { theme } from "../../styles/Theme";
+import joinArrayItemNames from "../../utils/joinArrayItemNames";
+import StyledProfilePicture from "../../styles/styled components/StyledProfilePicture";
+import { extractProfilePicture } from "../../utils/extractProfilePicture";
+import { formatDateToLocaleTime } from "../../utils/formatDataToLocaleTime";
 
 const EmployeeList = () => {
   const { employees, handleEmployeeDashboardOpen } = useUser();
@@ -18,13 +26,20 @@ const EmployeeList = () => {
     const user = employees[0];
 
     const userOrder = {
-      picture: {},
-    }
+      picture: {}
+    };
     const orderedUser = Object.assign(userOrder, user);
 
     const formattedHeaders = formatHeaders(Object.keys(orderedUser));
 
-    const displayHeaders = ['Picture','Full Name', 'Is Contractor', 'Starting Date', 'Departments','Has Left'];
+    const displayHeaders = [
+      "Picture",
+      "Full Name",
+      "Is Contractor",
+      "Starting Date",
+      "Departments",
+      "Has Left"
+    ];
 
     return formattedHeaders.map((key) => {
       if (displayHeaders.includes(key)) {
@@ -40,36 +55,48 @@ const EmployeeList = () => {
 
   const getTableCells = useCallback((user: User) => {
     const userOrder = {
-      picture: {},
-    }
+      picture: {}
+    };
     const orderedUser = Object.assign(userOrder, user);
-    const displayProperties = ['picture','fullName', 'isContractor', 'startingDate', 'departments','hasLeft'];
+    const displayProperties = [
+      "picture",
+      "fullName",
+      "isContractor",
+      "startingDate",
+      "departments",
+      "hasLeft"
+    ];
 
     return Object.entries(orderedUser).map(([key, value], index) => {
       if (displayProperties.includes(key)) {
-        if(key === 'startingDate') {
+        if (key === "startingDate") {
           return (
             <TableCell key={index} align="center">
               {formatDateToLocaleTime(value)}
             </TableCell>
           );
         }
-        if (key === 'picture' && typeof value === 'object') {
+        if (key === "picture" && typeof value === "object") {
           const imgSrc = extractProfilePicture(value?.data);
           return (
             <TableCell key={index} align="center">
-              <StyledProfilePicture src={imgSrc || ""} width="40px" height='40px' margin="0 auto"/>
+              <StyledProfilePicture
+                src={imgSrc || ""}
+                width="40px"
+                height="40px"
+                margin="0 auto"
+              />
             </TableCell>
           );
         }
-        if (typeof value === 'boolean') {
+        if (typeof value === "boolean") {
           return (
             <TableCell key={index} align="center">
-              {value ? 'Yes' : 'No'}
+              {value ? "Yes" : "No"}
             </TableCell>
           );
         } else if (Array.isArray(value)) {
-          const joinedDepartments = joinArrayItemNames(value, 'name');
+          const joinedDepartments = joinArrayItemNames(value, "name");
           return (
             <TableCell key={index} align="center">
               {joinedDepartments}
@@ -88,10 +115,18 @@ const EmployeeList = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper} sx={{ margin: '0 auto', marginBottom: 10, width: '80%' }}>
+    <TableContainer
+      component={Paper}
+      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+    >
       <Table>
         <TableHead>
-          <TableRow style={{ cursor: 'pointer', backgroundColor: theme.palette.primary.light}}>
+          <TableRow
+            style={{
+              cursor: "pointer",
+              backgroundColor: theme.palette.primary.light
+            }}
+          >
             {getColumnHeaders()}
           </TableRow>
         </TableHead>
@@ -101,7 +136,7 @@ const EmployeeList = () => {
               key={employee.email}
               hover
               onClick={() => handleEmployeeDashboardOpen(employee)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               {getTableCells(employee)}
             </TableRow>

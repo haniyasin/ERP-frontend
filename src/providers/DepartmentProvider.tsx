@@ -5,8 +5,8 @@ import { Department } from "../interfaces/Department";
 
 interface Departments {
   departments: Department[];
-  isDepartmentLoading: boolean,
-  getDepartments: () => void,
+  isDepartmentLoading: boolean;
+  getDepartments: () => void;
 }
 
 interface DepartmentProviderProps {
@@ -24,29 +24,29 @@ const DepartmentProvider = ({ children }: DepartmentProviderProps) => {
   const getDepartments = () => {
     setIsDepartmentLoading(true);
     get("/departments")
-    .then(res => {
-      if(res) {
-        setDepartments(res.data);
-        setIsDepartmentLoading(false);
-      }
-    })
-    .catch(err => {
+      .then((res) => {
+        if (res) {
+          setDepartments(res.data);
+          setIsDepartmentLoading(false);
+        }
+      })
+      .catch((err) => {
         toast.error(`Error: ${err}`);
         setIsDepartmentLoading(false);
-    })
-  }
+      });
+  };
 
   const value = {
     departments,
     isDepartmentLoading,
-    getDepartments,
+    getDepartments
   };
 
   return (
     <DepartmentContext.Provider value={value}>
-      { children }
+      {children}
     </DepartmentContext.Provider>
   );
-}
+};
 
 export default DepartmentProvider;

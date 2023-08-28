@@ -1,5 +1,5 @@
-import { CircularProgress, Container } from '@mui/material';
-import React from 'react';
+import { CircularProgress, Container } from "@mui/material";
+import React from "react";
 
 interface LoadingComponentProps {
   modalStyle?: boolean;
@@ -11,14 +11,14 @@ const LoadingComponent = ({ modalStyle }: LoadingComponentProps) => {
       <Container
         maxWidth="sm"
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '6vh',
-          margin: '0'
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "6vh",
+          margin: "0"
         }}
       >
-        <CircularProgress sx={{margin: 0}}/>
+        <CircularProgress sx={{ margin: 0 }} />
       </Container>
     );
   }
@@ -26,7 +26,12 @@ const LoadingComponent = ({ modalStyle }: LoadingComponentProps) => {
   return (
     <Container
       maxWidth="sm"
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh"
+      }}
     >
       <CircularProgress />
     </Container>

@@ -1,6 +1,6 @@
-# df-frontend
+# ERP-frontend
 
-This is the Frontend part of Deafor`s ERP System.
+This is the Frontend part of Matej's ERP System.
 
 ## Installation
 

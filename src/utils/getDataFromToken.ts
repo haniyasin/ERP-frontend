@@ -1,13 +1,13 @@
-import jwt_decode from 'jwt-decode';
-import { toast } from 'react-toastify';
+import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 interface DecodedToken {
-  role: string,
-  sub: number,
+  role: string;
+  sub: number;
 }
 
 const getUserRoleFromToken = () => {
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem("accessToken");
 
   if (token) {
     try {
@@ -22,7 +22,7 @@ const getUserRoleFromToken = () => {
 };
 
 const getUserIdFromToken = () => {
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem("accessToken");
 
   if (token) {
     try {
@@ -36,4 +36,4 @@ const getUserIdFromToken = () => {
   return null;
 };
 
-export {getUserRoleFromToken, getUserIdFromToken};
+export { getUserRoleFromToken, getUserIdFromToken };

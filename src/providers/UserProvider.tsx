@@ -5,28 +5,34 @@ import { User } from "../interfaces/User";
 import { toast } from "react-toastify";
 
 interface DeleteInformationProps {
-  email: string, reason: string, document: Buffer | null
+  email: string;
+  reason: string;
+  document: Buffer | null;
 }
 
 export type UserContextType = {
   userExists: boolean | null;
-  isLoading: boolean,
-  openedEmployee: User | null,
-  handleEmployeeDashboardOpen: (employee: User) => void,
-  handleEmployeeDashboardClose: () => void,
-  employees: User[],
-  getEmployees: () => void,
-  getEmployeeById: (id: number) => Promise<User>,
-  deleteEmployee: (deleteInformation: DeleteInformationProps) => Promise<User | null>,
-  editEmployee: (employee: User) => Promise<User | null>,
-  changeUserPicture: (data: Buffer) => Promise<User | null>,
-}
+  isLoading: boolean;
+  openedEmployee: User | null;
+  handleEmployeeDashboardOpen: (employee: User) => void;
+  handleEmployeeDashboardClose: () => void;
+  employees: User[];
+  getEmployees: () => void;
+  getEmployeeById: (id: number) => Promise<User>;
+  deleteEmployee: (
+    deleteInformation: DeleteInformationProps
+  ) => Promise<User | null>;
+  editEmployee: (employee: User) => Promise<User | null>;
+  changeUserPicture: (data: Buffer) => Promise<User | null>;
+};
 
 interface UserProviderProps {
   children: ReactNode;
 }
 
-export const UserContext = createContext<UserContextType>({} as UserContextType);
+export const UserContext = createContext<UserContextType>(
+  {} as UserContextType
+);
 
 const UserProvider = ({ children }: UserProviderProps) => {
   const [userExists, setUserExists] = useState<boolean | null>(null);
@@ -40,88 +46,89 @@ const UserProvider = ({ children }: UserProviderProps) => {
   const handleEmployeeDashboardOpen = (employee: User) => {
     setOpenedEmployee(employee);
     navigate(`/employee-dashboard/${employee.id}`);
-  }
+  };
 
   const handleEmployeeDashboardClose = () => {
     setOpenedEmployee(null);
     navigate("/hr");
-  }
+  };
 
   const getEmployees = async () => {
-    get("/users")
-    .then(res => {
-      if(res) {
-        const employeeList = res.data
-            .sort((a: User, b: User) => a.id - b.id);
-            setEmployees(employeeList);
+    get("/users").then((res) => {
+      if (res) {
+        const employeeList = res.data.sort((a: User, b: User) => a.id - b.id);
+        setEmployees(employeeList);
       }
-    })
-  }
+    });
+  };
 
   const getEmployeeById = async (id: number) => {
-    return await get(`users/userById/${id}`)
-            .then(res => {
-              if(res.data !== "")
-                setOpenedEmployee(res.data);
-              return res;
-            })
-  }
+    return await get(`users/userById/${id}`).then((res) => {
+      if (res.data !== "") setOpenedEmployee(res.data);
+      return res;
+    });
+  };
 
   const deleteEmployee = async (deleteInformation: DeleteInformationProps) => {
-    if(!openedEmployee) return null;
-    return await put("/users", deleteInformation, 'multipart/form-data')
-      .then(res => {
-        if(res) {
+    if (!openedEmployee) return null;
+    return await put("/users", deleteInformation, "multipart/form-data").then(
+      (res) => {
+        if (res) {
           handleEmployeeDashboardClose();
           return res;
         }
-      })
-  }
+      }
+    );
+  };
 
   const editEmployee = async (inputData: User) => {
-    if(!openedEmployee) return null;
-    return await put(`users/${openedEmployee.id}`, inputData)
-    .then(res => {
-      if(res) {
+    if (!openedEmployee) return null;
+    return await put(`users/${openedEmployee.id}`, inputData).then((res) => {
+      if (res) {
         getEmployees();
         toast.success("Successfully edited Employee!");
         return res;
       }
-    })
-  }
+    });
+  };
 
   const changeUserPicture = async (data: any) => {
-    if(!openedEmployee) return null;
-    return await put(`users/picture/${openedEmployee.id}`, data, 'multipart/form-data')
-      .then(res => {
-        if(res) {
-          getEmployees();
-          toast.success("Successfully edited Employee!");
-          return res;
-        }
-      })
-  }
+    if (!openedEmployee) return null;
+    return await put(
+      `users/picture/${openedEmployee.id}`,
+      data,
+      "multipart/form-data"
+    ).then((res) => {
+      if (res) {
+        getEmployees();
+        toast.success("Successfully edited Employee!");
+        return res;
+      }
+    });
+  };
 
   useEffect(() => {
     get("/users/isDBEmpty")
-      .then(res => {
-        if(res && res.data === true) {
+      .then((res) => {
+        if (res && res.data === true) {
           setUserExists(false);
-          navigate('/register');
+          navigate("/register");
         } else {
           setUserExists(true);
-        };
+        }
       })
-      .catch(err => {
-        if(err.response?.data) {
-          alert(`Error code: ${err.response.data.statusCode} - ${err.response.data.message}`)
+      .catch((err) => {
+        if (err.response?.data) {
+          alert(
+            `Error code: ${err.response.data.statusCode} - ${err.response.data.message}`
+          );
           navigate("/error");
         }
       })
       .finally(() => {
-          setIsLoading(false);
+        setIsLoading(false);
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const value = {
@@ -135,14 +142,10 @@ const UserProvider = ({ children }: UserProviderProps) => {
     getEmployeeById,
     deleteEmployee,
     editEmployee,
-    changeUserPicture,
+    changeUserPicture
   };
 
-  return (
-    <UserContext.Provider value={value}>
-      { children }
-    </UserContext.Provider>
-  );
-}
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
 
 export default UserProvider;

@@ -9,7 +9,7 @@ export interface UserAuth {
   isAuthenticated: boolean;
   login: (data: User) => void;
   logout: () => void;
-  registerUser: (data: User) => Promise<User>,
+  registerUser: (data: User) => Promise<User>;
   registerAndLogin: (data: User) => void;
 }
 
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
   }, []);
 
   const handleLoginResponse = (res: any) => {
-    if(res) {
+    if (res) {
       const token = res.data.access_token;
       if (token) {
         setIsAuthenticated(true);
@@ -39,22 +39,20 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
         navigate("/");
       }
     }
-  }
+  };
 
   const registerAndLogin = (data: User) => {
-    post("/auth/register", data)
-      .then((res) => {
-        handleLoginResponse(res);
-      })
+    post("/auth/register", data).then((res) => {
+      handleLoginResponse(res);
+    });
   };
 
   const login = (data: User) => {
     if (isAuthenticated) return toast.error("You are already logged in!");
 
-    post("/auth/login", data)
-      .then(res => {
-        handleLoginResponse(res);
-      })
+    post("/auth/login", data).then((res) => {
+      handleLoginResponse(res);
+    });
   };
 
   const logout = () => {
@@ -64,28 +62,25 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
   };
 
   const registerUser = async (data: User) => {
-    return await post("/users/createUser", data, 'multipart/form-data')
-      .then((res) => {
-        if(res) {
+    return await post("/users/createUser", data, "multipart/form-data").then(
+      (res) => {
+        if (res) {
           toast.success("User created Successfully!");
           return res;
         }
-      })
-  }
+      }
+    );
+  };
 
   const value = {
     isAuthenticated,
     login,
     logout,
     registerUser,
-    registerAndLogin,
+    registerAndLogin
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      { children }
-    </AuthContext.Provider>
-  );
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
 
 export default AuthProvider;
