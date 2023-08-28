@@ -36,10 +36,10 @@ const NewLeaveModal = ({ closeModal, isModalOpen }: NewLeaveModalProps) => {
           leaveDaysLeft:
             res.data.type === "Paid"
               ? parseFloat(
-                  (
-                    openedEmployee.leaveDaysLeft - getLeaveDaysCount(res.data)
-                  ).toFixed(2)
-                )
+                (
+                  openedEmployee.leaveDaysLeft - getLeaveDaysCount(res.data)
+                ).toFixed(2)
+              )
               : openedEmployee.leaveDaysLeft
         });
         toast.success("Successfully created new Leave!");

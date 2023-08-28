@@ -9,7 +9,7 @@ const Profile = () => {
   const { get } = useHttp();
 
   useEffect(() => {
-    get(`users/loggedInUser`).then((res) => {
+    get("users/loggedInUser").then((res) => {
       if (res) setUser(res.data);
     });
     // eslint-disable-next-line

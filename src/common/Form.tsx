@@ -1,3 +1,4 @@
+import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box } from "@mui/material";
 import { FunctionComponent, PropsWithChildren } from "react";
@@ -7,8 +8,6 @@ export type FormProps = {
   onSubmit: (data: any) => void;
   validationSchema: any; // @TODO - find type for SchemaOf<T>
   defaultValues?: any;
-  submitting?: boolean;
-  hide?: any;
 };
 
 const Form: FunctionComponent<PropsWithChildren<FormProps>> = ({
@@ -16,8 +15,6 @@ const Form: FunctionComponent<PropsWithChildren<FormProps>> = ({
   onSubmit,
   validationSchema,
   defaultValues,
-  submitting,
-  hide = false,
   ...rest
 }) => {
   const methods = useForm({

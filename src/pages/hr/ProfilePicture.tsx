@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
 import StyledProfilePicture from "../../styles/styled components/StyledProfilePicture";
 

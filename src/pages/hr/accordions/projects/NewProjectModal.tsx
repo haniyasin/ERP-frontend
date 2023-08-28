@@ -21,7 +21,7 @@ const NewProjectModal = ({ closeModal, isModalOpen }: NewProjectModalProps) => {
   const { openedEmployee, handleEmployeeDashboardOpen } = useUser();
 
   const getProjects = () => {
-    get(`projects`).then((res) => {
+    get("projects").then((res) => {
       if (res) {
         setProjects(res.data);
       }
