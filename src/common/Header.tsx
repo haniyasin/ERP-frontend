@@ -20,9 +20,21 @@ const Header = () => {
   };
 
   return (
-    <AppBar className="nav" position="static">
+    <AppBar className="nav" style={{ position: "absolute", top: 0 }}>
       <Toolbar>
-        <img onClick={onImageClick} src={logo} alt="logo" />
+        <img
+          onClick={onImageClick}
+          src={logo}
+          alt="logo"
+          style={{
+            margin: "auto",
+            borderRadius: "200px",
+            width: "3%",
+            cursor: "pointer",
+            display: "block",
+            marginRight: "10px"
+          }}
+        />
         <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
           DEAFOR
         </Typography>
