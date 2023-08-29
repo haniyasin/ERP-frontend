@@ -35,7 +35,7 @@ const Header = () => {
             marginRight: "10px"
           }}
         />
-        <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
           DEAFOR
         </Typography>
         <Stack direction="row" spacing={2}>

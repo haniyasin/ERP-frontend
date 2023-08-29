@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface FileDisplayProps {
   fileBuffer: { data: number[] };
@@ -17,7 +17,7 @@ const FileDisplay = ({
   const fileUrl = URL.createObjectURL(fileBlob);
 
   return (
-    <div>
+    <Box>
       <Typography
         variant="subtitle2"
         component="a"
@@ -26,7 +26,7 @@ const FileDisplay = ({
       >
         {`${fileName}${fileType}`}
       </Typography>
-    </div>
+    </Box>
   );
 };
 
