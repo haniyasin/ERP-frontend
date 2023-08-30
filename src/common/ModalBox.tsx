@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { Box, BoxProps, Modal } from "@mui/material";
+import { BoxProps, Modal } from "@mui/material";
+import { StyledModalBox } from "../styles/styled components/StyledModalBox";
 
 interface ModalBoxProps extends BoxProps {
   open: boolean;
@@ -31,21 +32,16 @@ const ModalBox = ({
     }}
     disableAutoFocus
   >
-    <Box
-      sx={{
-        position: "absolute",
-        top: top || "40%",
-        left: left || "50%",
-        transform: transform || "translate(-50%, -50%)",
-        width: width || 300,
-        bgcolor: bgcolor || "background.paper",
-        boxShadow: 24,
-        p: 4
-      }}
+    <StyledModalBox
+      top={top}
+      left={left}
+      width={width}
+      bgcolor={bgcolor}
+      transform={transform}
       {...boxProps}
     >
       {children}
-    </Box>
+    </StyledModalBox>
   </Modal>
 );
 

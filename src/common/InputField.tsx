@@ -1,11 +1,11 @@
+import React from "react";
 import {
-  InputLabel,
   TextField,
   TextFieldProps,
   Typography
 } from "@mui/material";
-import React from "react";
 import { useFormContext } from "react-hook-form";
+import { FormInputLabel } from "../styles/styled components/FormInputLabel";
 
 interface InputFieldProps extends Omit<TextFieldProps, "name" | "label"> {
   name: string;
@@ -42,30 +42,12 @@ const InputField = ({
   return (
     <>
       {name === "picture" && (
-        <InputLabel
-          htmlFor="profile-picture"
-          sx={{
-            margin: 0,
-            marginLeft: 2,
-            fontSize: "0.75rem",
-            fontWeight: "520"
-          }}
-        >
+        <FormInputLabel htmlFor="profile-picture">
           Profile Picture
-        </InputLabel>
+        </FormInputLabel>
       )}
       {name === "document" && (
-        <InputLabel
-          htmlFor="document"
-          sx={{
-            margin: 0,
-            marginLeft: 2,
-            fontSize: "0.75rem",
-            fontWeight: "520"
-          }}
-        >
-          Document
-        </InputLabel>
+        <FormInputLabel htmlFor="document">Document</FormInputLabel>
       )}
       <TextField
         variant={variant || "outlined"}
