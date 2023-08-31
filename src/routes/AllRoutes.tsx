@@ -1,6 +1,6 @@
 import Bdm from "../pages/BdmDashboard";
 import Departments from "../pages/DepartmentDashboard";
-import Finance from "../pages/FinanceDashboard";
+import Finance from "../pages/fin/FinanceDashboard";
 import Hr from "../pages/hr/HrDashboard";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
