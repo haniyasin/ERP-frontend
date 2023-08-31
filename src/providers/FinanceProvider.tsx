@@ -1,9 +1,7 @@
-import React, { ReactNode, createContext, useEffect, useState } from "react";
+import React, { ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHttp } from "../hooks/useHttp";
-import { UserContext } from "./UserProvider";
 import { toast } from "react-toastify";
-import { error } from "console";
 import { Finance } from "../interfaces/Finance";
 
 export type FinanceContextType = {

@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode, createContext, useState } from "react";
 import { Candidate } from "../interfaces/Candidate";
 import { useHttp } from "../hooks/useHttp";
