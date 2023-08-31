@@ -3,7 +3,7 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { useFinance } from "../../hooks/contextHooks";
 import NewUserModal from "../admin/NewUserModal";
 import { ToastContainer } from "react-toastify";
-import EmployeeList from "../hr/EmployeeList";
+import EmployeeList from "../hr/employees/EmployeeList";
 import FinanceList from "./FinanceList";
 import FinanceModal from "./FinanceModal";
 import NewFinanceModal from "./CreateFinanceModal";

@@ -4,6 +4,8 @@ import { RoleContext } from "../providers/RoleProvider";
 import { AuthContext } from "../providers/AuthProvider";
 import { DepartmentContext } from "../providers/DepartmentProvider";
 import { FinanceContext } from "../providers/FinanceProvider";
+import { PositionContext } from "../providers/PositionProvider";
+import { CandidateContext } from "../providers/CandidateProvider";
 
 const useCustomContext = (Context: Context<any>, errorMessage: string) => {
   const context = useContext(Context);
@@ -33,6 +35,22 @@ export const useAuth = () => {
   const context = useCustomContext(
     AuthContext,
     "useAuth must be used within an AuthProvider"
+  );
+  return context;
+};
+
+export const usePosition = () => {
+  const context = useCustomContext(
+    PositionContext,
+    "useFinance must be used within an FinanceProvider"
+  );
+  return context;
+};
+
+export const useCandidate = () => {
+  const context = useCustomContext(
+    CandidateContext,
+    "useFinance must be used within an FinanceProvider"
   );
   return context;
 };

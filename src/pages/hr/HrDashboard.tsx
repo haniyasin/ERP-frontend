@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
-import EmployeeList from "./EmployeeList";
+import EmployeeList from "./employees/EmployeeList";
 import { useUser } from "../../hooks/contextHooks";
 import { ToastContainer } from "react-toastify";
-import NewEmployeeModal from "./modals/NewEmployeeModal";
+import NewEmployeeModal from "./employees/modals/NewEmployeeModal";
+import PositionList from "./PositionDashboard/PositionList";
 
 const HR = () => {
   const [isNewEmployeeModalOpen, setIsNewEmployeeModalOpen] =
@@ -32,6 +33,19 @@ const HR = () => {
         </Button>
       </Box>
       <EmployeeList />
+
+      <Typography variant="h5" textAlign="center" margin={4}>
+        Positions
+      </Typography>
+      <Box display="flex" justifyContent="center" marginBottom={3}>
+        <Button
+          onClick={() => setIsNewEmployeeModalOpen(true)}
+          variant="contained"
+        >
+          New Employee
+        </Button>
+      </Box>
+      <PositionList />
       {isNewEmployeeModalOpen && (
         <NewEmployeeModal
           closeNewEmployeeModal={() => setIsNewEmployeeModalOpen(false)}

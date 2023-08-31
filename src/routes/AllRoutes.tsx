@@ -6,7 +6,8 @@ import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
 import Unauthorized from "../pages/Unauthorized";
 import Admin from "../pages/admin/AdminDashboard";
-import EmployeeDashboard from "../pages/hr/EmployeeDashboard";
+import EmployeeDashboard from "../pages/hr/employees/EmployeeDashboard";
+import PositionDashboard from "../pages/hr/PositionDashboard/PositionDashboard";
 
 export interface IRoute {
   path: string;
@@ -39,6 +40,11 @@ export const protectedRoutes: IRoute[] = [
     path: "/bdm",
     Element: Bdm,
     allowedRoles: ["ADMIN", "BDM"]
+  },
+  {
+    path: "/position-dashboard/:positionId",
+    Element: PositionDashboard,
+    allowedRoles: ["ADMIN", "HR"]
   },
   {
     path: "/employee-dashboard/:employeeId",
