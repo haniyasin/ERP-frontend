@@ -31,7 +31,12 @@ const StyledProfilePicture = ({
         <img
           src={src}
           alt="Employee"
-          style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            margin: "auto"
+          }}
         />
       ) : (
         <Typography>Employee</Typography>

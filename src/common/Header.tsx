@@ -6,6 +6,7 @@ import { getUserRoleFromToken } from "../utils/getDataFromToken";
 import { filterUserRoutes } from "../utils/filterUserRoutes";
 import { protectedRoutes } from "../routes/AllRoutes";
 import { useAuth, useUser } from "../hooks/contextHooks";
+import { HeaderImage } from "../styles/styled components/HeaderImage";
 
 const Header = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -22,20 +23,8 @@ const Header = () => {
   return (
     <AppBar className="nav" style={{ position: "absolute", top: 0 }}>
       <Toolbar>
-        <img
-          onClick={onImageClick}
-          src={logo}
-          alt="logo"
-          style={{
-            margin: "auto",
-            borderRadius: "200px",
-            width: "3%",
-            cursor: "pointer",
-            display: "block",
-            marginRight: "10px"
-          }}
-        />
-        <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1 }}>
+        <HeaderImage onClick={onImageClick} src={logo} alt="logo" />
+        <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
           DEAFOR
         </Typography>
         <Stack direction="row" spacing={2}>
