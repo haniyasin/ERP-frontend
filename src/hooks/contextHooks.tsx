@@ -3,6 +3,7 @@ import { UserContext } from "../providers/UserProvider";
 import { RoleContext } from "../providers/RoleProvider";
 import { AuthContext } from "../providers/AuthProvider";
 import { DepartmentContext } from "../providers/DepartmentProvider";
+import { FinanceContext } from "../providers/FinanceProvider";
 
 const useCustomContext = (Context: Context<any>, errorMessage: string) => {
   const context = useContext(Context);
@@ -39,7 +40,15 @@ export const useAuth = () => {
 export const useDepartment = () => {
   const context = useCustomContext(
     DepartmentContext,
-    "useDepartment must be used within an AuthProvider"
+    "useDepartment must be used within an DepartmentProvider"
+  );
+  return context;
+};
+
+export const useFinance = () => {
+  const context = useCustomContext(
+    FinanceContext,
+    "useFinance must be used within an FinanceProvider"
   );
   return context;
 };
