@@ -41,6 +41,8 @@
   },
   "scripts": {
     "start": "vite",
+    "lint": "eslint ./src",
+    "lint-fix": "eslint --fix ./src",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",

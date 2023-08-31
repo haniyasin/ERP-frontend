@@ -26,7 +26,6 @@ const NewSalaryModal = ({ closeModal, isModalOpen }: NewSalaryModalProps) => {
       user: { id: openedEmployee.id },
       document: data.document[0]
     };
-    console.log(data.document[0]);
     post("/salaries", dataWithUserID, "multipart/form-data").then((res) => {
       if (res) {
         handleEmployeeDashboardOpen({
