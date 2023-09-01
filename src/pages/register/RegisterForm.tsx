@@ -43,7 +43,15 @@ const RegisterForm = () => {
           </Stack>
         </Grid>
         <Grid item container direction="column" lg={4}>
-          <img src={logo} alt="logo" />
+          <img
+            src={logo}
+            alt="logo"
+            style={{
+              width: "80%",
+              borderRadius: "200px",
+              margin: "auto"
+            }}
+          />
         </Grid>
       </Grid>
     </Form>

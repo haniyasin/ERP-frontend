@@ -46,7 +46,7 @@ const Profile = () => {
             Starting Date
           </Typography>
           <Typography variant="body1">
-            {new Date(user.startingDate).toISOString().split("T")[0]}
+            {/* {new Date(user.startingDate).toISOString().split("T")[0]} */}
           </Typography>
         </Grid>
       </Grid>

@@ -6,6 +6,7 @@ import { DepartmentContext } from "../providers/DepartmentProvider";
 import { FinanceContext } from "../providers/FinanceProvider";
 import { PositionContext } from "../providers/PositionProvider";
 import { CandidateContext } from "../providers/CandidateProvider";
+import { CompanyContext } from "../providers/CompanyProvider";
 
 const useCustomContext = (Context: Context<any>, errorMessage: string) => {
   const context = useContext(Context);
@@ -59,6 +60,14 @@ export const useDepartment = () => {
   const context = useCustomContext(
     DepartmentContext,
     "useDepartment must be used within an DepartmentProvider"
+  );
+  return context;
+};
+
+export const useCompany = () => {
+  const context = useCustomContext(
+    CompanyContext,
+    "useDepartment must be used within an CompanyProvider"
   );
   return context;
 };
