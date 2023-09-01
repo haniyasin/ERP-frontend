@@ -1,6 +1,5 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import { Form } from "react-router-dom";
 import InputField from "../../../../common/InputField";
 import ModalBox from "../../../../common/ModalBox";
 import SelectField from "../../../../common/SelectField";
@@ -12,6 +11,7 @@ import {
 import { User } from "../../../../interfaces/User";
 import CustomRadioGroup from "../../../admin/CustomRadioGroup";
 import { createEmployeeSchema } from "../form-schemas/createEmployeeSchema";
+import Form from "../../../../common/Form";
 
 interface NewEmployeeModalProps {
   isNewEmployeeModalOpen: boolean;
