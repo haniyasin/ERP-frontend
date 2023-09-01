@@ -4,7 +4,7 @@ import { getLoginToken } from "../utils/authToken";
 import { toast } from "react-toastify";
 
 const useHttp = () => {
-  const api = axios.create({ baseURL: "http://localhost:3002" });
+  const api = axios.create({ baseURL: "http://localhost:3001" });
 
   api.interceptors.request.use((config) => {
     const token = getLoginToken();

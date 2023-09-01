@@ -42,7 +42,7 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
   };
 
   const registerAndLogin = (data: User) => {
-    post("/auth/register", data).then((res) => {
+    post("/auth/register", { ...data, startDate: new Date() }).then((res) => {
       handleLoginResponse(res);
     });
   };

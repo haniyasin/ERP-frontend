@@ -1,4 +1,4 @@
-import Bdm from "../pages/BdmDashboard";
+import Bdm from "../pages/bdm/BdmDashboard";
 import Departments from "../pages/DepartmentDashboard";
 import Finance from "../pages/fin/FinanceDashboard";
 import Hr from "../pages/hr/HrDashboard";
@@ -8,6 +8,7 @@ import Unauthorized from "../pages/Unauthorized";
 import Admin from "../pages/admin/AdminDashboard";
 import EmployeeDashboard from "../pages/hr/employees/EmployeeDashboard";
 import PositionDashboard from "../pages/hr/PositionDashboard/PositionDashboard";
+import CompanyDashboard from "../pages/bdm/CompanyDashboard";
 
 export interface IRoute {
   path: string;
@@ -50,6 +51,11 @@ export const protectedRoutes: IRoute[] = [
     path: "/employee-dashboard/:employeeId",
     Element: EmployeeDashboard,
     allowedRoles: ["ADMIN", "HR"]
+  },
+  {
+    path: "/company-dashboard/:companyId",
+    Element: CompanyDashboard,
+    allowedRoles: ["ADMIN", "BDM"]
   },
   {
     path: "/profile",
