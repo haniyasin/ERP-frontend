@@ -32,7 +32,10 @@ const Header = () => {
             <>
               {accessibleRoutes
                 .filter(
-                  ({ path }) => path !== "/employee-dashboard/:employeeId"
+                  ({ path }) =>
+                    path !== "/employee-dashboard/:employeeId" &&
+                    path !== "/position-dashboard/:positionId" &&
+                    path !== "/company-dashboard/:companyId"
                 )
                 .map(({ path, Element }) => (
                   <Button
