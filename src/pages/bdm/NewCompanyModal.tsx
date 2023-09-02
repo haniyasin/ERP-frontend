@@ -20,7 +20,6 @@ const NewCompanyModal = ({
   const { addCompany } = useCompany();
 
   const onSubmit = (data: CompanyContextType) => {
-    console.log(data);
     addCompany(data).then((res: boolean) => {
       if (res) closeNewCompanyModal();
     });

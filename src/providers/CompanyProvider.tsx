@@ -57,6 +57,7 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
     get("/companies").then((res) => {
       if (res) {
         setCompanies(res.data);
+        setIsLoading(false);
       }
     });
   };

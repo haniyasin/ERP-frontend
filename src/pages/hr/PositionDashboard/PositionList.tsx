@@ -23,14 +23,18 @@ const PositionList = () => {
 
     return Object.keys(position)
       .filter((key) => key !== "id")
-      .map((key) => <CenteredTableCell key={key}>{key}</CenteredTableCell>);
+      .map((key) => (
+        <CenteredTableCell key={key}>
+          {key[0].toUpperCase() + key.slice(1)}
+        </CenteredTableCell>
+      ));
   }, [positions]);
 
   const getTableCells = useCallback((position: Position) => {
     return Object.entries(position).map(([key, value]) => {
       if (key === "id") return null;
-      if (key === "project")
-        return <CenteredTableCell key={key}>{value.name}</CenteredTableCell>;
+      if (key === "project" || key === "company")
+        return <CenteredTableCell key={key}>{value?.name}</CenteredTableCell>;
       return <CenteredTableCell key={key}>{value}</CenteredTableCell>;
     });
   }, []);

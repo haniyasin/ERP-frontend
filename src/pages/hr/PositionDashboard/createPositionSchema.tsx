@@ -6,10 +6,9 @@ export const createPositionSchema = yup.object().shape({
     .required("Name Required!")
     .max(30, "Name must be shorter than 30 characters!"),
 
-  project: yup
-    .string()
-    .required("Company is Required!")
-    .max(30, "Company must be shorter than 30 characters!"),
+  description: yup.string().required("Description is Required!"),
 
-  description: yup.string().required("Description is Required!")
+  project: yup.string().required("Project is Required!"),
+
+  company: yup.string().required("Company is Required!")
 });
