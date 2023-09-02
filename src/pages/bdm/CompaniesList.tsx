@@ -2,7 +2,6 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow
@@ -11,6 +10,8 @@ import React, { useCallback } from "react";
 import { useCompany } from "../../hooks/contextHooks";
 import { Company } from "../../interfaces/Company";
 import { formatHeaders } from "../../utils/formatHeaders";
+import { CenteredTableCell } from "../../styles/styled components/CenteredTableCell";
+import { theme } from "../../styles/Theme";
 
 const CompanyList = () => {
   const { companies, handleCompanyDashboardOpen } = useCompany();
@@ -22,22 +23,34 @@ const CompanyList = () => {
 
     const formattedHeaders = formatHeaders(Object.keys(company));
 
-    return formattedHeaders.map((key) => (
-      <TableCell key={key}>{key}</TableCell>
-    ));
+    return formattedHeaders.map((key) => {
+      if (key !== "Id")
+        return <CenteredTableCell key={key}>{key}</CenteredTableCell>;
+    });
   }, [companies]);
 
   const getTableCells = useCallback((company: Company) => {
-    return Object.values(company).map((value, index) => (
-      <TableCell key={index}>{value}</TableCell>
-    ));
+    return Object.entries(company).map(([key, value], index) => {
+      if (key !== "id")
+        return <CenteredTableCell key={index}>{value}</CenteredTableCell>;
+    });
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+    >
       <Table>
         <TableHead>
-          <TableRow>{getColumnHeaders()}</TableRow>
+          <TableRow
+            style={{
+              cursor: "pointer",
+              backgroundColor: theme.palette.primary.light
+            }}
+          >
+            {getColumnHeaders()}
+          </TableRow>
         </TableHead>
         <TableBody>
           {companies.map((company: Company) => (

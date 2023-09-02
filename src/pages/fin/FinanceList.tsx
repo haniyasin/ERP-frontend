@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { useFinance } from "../../hooks/contextHooks";
-import TableCell from "@mui/material/TableCell/TableCell";
 
 import {
   Paper,
@@ -12,30 +11,21 @@ import {
 } from "@mui/material";
 
 import { Finance, FinanceSummary } from "../../interfaces/Finance";
+import { theme } from "../../styles/Theme";
+import { CenteredTableCell } from "../../styles/styled components/CenteredTableCell";
 
 const FinanceList = () => {
   const { handleFinanceModalOpen, finances } = useFinance();
 
-  const basicFinances = finances.map((finance: Finance) => {
-    return {
-      id: finance.id,
-      client: finance.client,
-      amountWithVat: finance.amountWithVat,
-      dueDate: finance.dueDate
-    };
-  });
-
   const getColumnHeaders = useCallback(() => {
     if (finances.length === 0) return null;
 
-    const finance = basicFinances[0];
-
     return (
       <>
-        <TableCell align="left">Client</TableCell>
-        <TableCell align="left">Amount</TableCell>
-        <TableCell align="right">Due Date</TableCell>
-        <TableCell align="right">Payment Type</TableCell>
+        <CenteredTableCell>Client</CenteredTableCell>
+        <CenteredTableCell>Amount</CenteredTableCell>
+        <CenteredTableCell>Due Date</CenteredTableCell>
+        <CenteredTableCell>Payment Type</CenteredTableCell>
       </>
     );
   }, [finances]);
@@ -44,19 +34,29 @@ const FinanceList = () => {
     const { client, amountWithVat, dueDate, paymentType } = finance;
     return (
       <>
-        <TableCell>{client}</TableCell>
-        <TableCell>{amountWithVat}</TableCell>
-        <TableCell align="right">{dueDate}</TableCell>
-        <TableCell align="right">{paymentType}</TableCell>
+        <CenteredTableCell>{client}</CenteredTableCell>
+        <CenteredTableCell>{amountWithVat}</CenteredTableCell>
+        <CenteredTableCell>{dueDate}</CenteredTableCell>
+        <CenteredTableCell>{paymentType}</CenteredTableCell>
       </>
     );
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+    >
       <Table>
         <TableHead>
-          <TableRow>{getColumnHeaders()}</TableRow>
+          <TableRow
+            style={{
+              cursor: "pointer",
+              backgroundColor: theme.palette.primary.light
+            }}
+          >
+            {getColumnHeaders()}
+          </TableRow>
         </TableHead>
         <TableBody>
           {finances.map((finance: Finance) => (

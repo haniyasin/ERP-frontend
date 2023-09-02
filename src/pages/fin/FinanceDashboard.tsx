@@ -39,6 +39,9 @@ const Finance = () => {
       >
         Finance Dashboard Page
       </Typography>
+      <Typography variant="h5" textAlign="center" margin={4}>
+        Invoices
+      </Typography>
       <Box display="flex" justifyContent="center" margin={5}>
         <Button onClick={openNewFinanceModal} variant="contained">
           Add Invoice

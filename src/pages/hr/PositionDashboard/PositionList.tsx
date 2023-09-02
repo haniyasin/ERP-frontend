@@ -5,13 +5,13 @@ import {
   Paper,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow
 } from "@mui/material";
 import { Position } from "../../../interfaces/Position";
 import { theme } from "../../../styles/Theme";
+import { CenteredTableCell } from "../../../styles/styled components/CenteredTableCell";
 
 const PositionList = () => {
   const { handlePositionDashboardOpen, positions } = usePosition();
@@ -23,15 +23,15 @@ const PositionList = () => {
 
     return Object.keys(position)
       .filter((key) => key !== "id")
-      .map((key) => <TableCell key={key}>{key}</TableCell>);
+      .map((key) => <CenteredTableCell key={key}>{key}</CenteredTableCell>);
   }, [positions]);
 
   const getTableCells = useCallback((position: Position) => {
     return Object.entries(position).map(([key, value]) => {
       if (key === "id") return null;
       if (key === "project")
-        return <TableCell key={key}>{value.name}</TableCell>;
-      return <TableCell key={key}>{value}</TableCell>;
+        return <CenteredTableCell key={key}>{value.name}</CenteredTableCell>;
+      return <CenteredTableCell key={key}>{value}</CenteredTableCell>;
     });
   }, []);
 
@@ -40,7 +40,10 @@ const PositionList = () => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+    >
       <Table>
         <TableHead>
           <TableRow
