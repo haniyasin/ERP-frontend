@@ -54,9 +54,7 @@ const PositionProvider = ({ children }: PositionProviderProps) => {
 
   const getPositionById = async (id: number) => {
     await get(`positions/positionById/${id}`).then((res) => {
-      if (res) {
-        setClickedPosition(res.data);
-      }
+      if (res) setClickedPosition(res.data);
     });
   };
 

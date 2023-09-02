@@ -2,7 +2,6 @@ import React from "react";
 import { useCallback } from "react";
 import { usePosition } from "../../../hooks/contextHooks";
 import {
-  Box,
   Paper,
   Table,
   TableBody,
@@ -12,6 +11,7 @@ import {
   TableRow
 } from "@mui/material";
 import { Position } from "../../../interfaces/Position";
+import { theme } from "../../../styles/Theme";
 
 const PositionList = () => {
   const { handlePositionDashboardOpen, positions } = usePosition();
@@ -29,6 +29,8 @@ const PositionList = () => {
   const getTableCells = useCallback((position: Position) => {
     return Object.entries(position).map(([key, value]) => {
       if (key === "id") return null;
+      if (key === "project")
+        return <TableCell key={key}>{value.name}</TableCell>;
       return <TableCell key={key}>{value}</TableCell>;
     });
   }, []);
@@ -38,27 +40,32 @@ const PositionList = () => {
   };
 
   return (
-    <Box>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>{getColumnHeaders()}</TableRow>
-          </TableHead>
-          <TableBody>
-            {positions.map((position: Position) => (
-              <TableRow
-                key={position.name}
-                hover
-                onClick={() => handlePositionClick(position)}
-                style={{ cursor: "pointer" }}
-              >
-                {getTableCells(position)}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow
+            style={{
+              cursor: "pointer",
+              backgroundColor: theme.palette.primary.light
+            }}
+          >
+            {getColumnHeaders()}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {positions.map((position: Position) => (
+            <TableRow
+              key={position.name}
+              hover
+              onClick={() => handlePositionClick(position)}
+              style={{ cursor: "pointer" }}
+            >
+              {getTableCells(position)}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

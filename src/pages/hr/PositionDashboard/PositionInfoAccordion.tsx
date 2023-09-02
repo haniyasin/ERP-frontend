@@ -11,9 +11,10 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Form from "../../../common/Form";
 import InputFields from "../../../common/InputField";
-import { usePosition } from "../../../hooks/contextHooks";
+import { usePosition, useProject } from "../../../hooks/contextHooks";
 import { Position } from "../../../interfaces/Position";
 import { createPositionSchema } from "./createPositionSchema";
+import SelectField from "../../../common/SelectField";
 
 interface PositionInfoAccordion {
   isEditPositionClicked: boolean;
@@ -25,6 +26,7 @@ const PositionInfoAccordion = ({
   handleEditPositionClose
 }: PositionInfoAccordion) => {
   const { clickedPosition, editPosition } = usePosition();
+  const { projects, getProjects, isLoading } = useProject();
 
   const onSubmit = (positionData: Position) => {
     editPosition(positionData).then((res: boolean) => {
@@ -55,10 +57,13 @@ const PositionInfoAccordion = ({
                 defaultValue={clickedPosition?.name}
                 readOnly={!isEditPositionClicked}
               />
-              <InputFields
+              <SelectField
                 name="project"
                 label="Project"
-                defaultValue={clickedPosition?.project}
+                defaultValue={clickedPosition?.project?.id}
+                arrayData={projects}
+                getArrayData={getProjects}
+                isLoading={isLoading}
                 readOnly={!isEditPositionClicked}
               />
               <InputFields
