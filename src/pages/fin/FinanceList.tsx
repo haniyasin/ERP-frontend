@@ -34,7 +34,7 @@ const FinanceList = () => {
     const { client, amountWithVat, dueDate, paymentType } = finance;
     return (
       <>
-        <CenteredTableCell>{client}</CenteredTableCell>
+        <CenteredTableCell>{client?.name}</CenteredTableCell>
         <CenteredTableCell>{amountWithVat}</CenteredTableCell>
         <CenteredTableCell>{dueDate}</CenteredTableCell>
         <CenteredTableCell>{paymentType}</CenteredTableCell>

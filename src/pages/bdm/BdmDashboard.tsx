@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useCompany } from "../../hooks/contextHooks";
 import CompanyList from "./CompaniesList";
-import CompanyDashboard from "./CompanyDashboard";
 import { ToastContainer } from "react-toastify";
 import NewCompanyModal from "./NewCompanyModal";
 
@@ -17,13 +16,13 @@ const BDM = () => {
   return (
     <Container>
       <ToastContainer position="top-center" />
-      <Typography variant="h3" textAlign="center" margin={8}>
+      <Typography variant="h4" textAlign="center" margin={5}>
         Business Development Management
       </Typography>
       <Typography variant="h5" textAlign="center" margin={4}>
         Companies
       </Typography>
-      <Box display="flex" justifyContent="center" marginBottom={2}>
+      <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button
           onClick={() => setIsNewCompanyModalOpen(true)}
           variant="contained"

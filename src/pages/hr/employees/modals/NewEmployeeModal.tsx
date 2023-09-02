@@ -101,7 +101,7 @@ const NewEmployeeModal = ({
                 <SelectField
                   name="departments"
                   label="Departments"
-                  defaultValue={[1]}
+                  defaultValue={[0]}
                   arrayData={departments}
                   getArrayData={getDepartments}
                   isLoading={isDepartmentLoading}

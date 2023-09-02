@@ -2,10 +2,11 @@ import React from "react";
 import { Typography, Grid, Stack, Button } from "@mui/material";
 import InputField from "../../common/InputField";
 import ModalBox from "../../common/ModalBox";
-import { useFinance } from "../../hooks/contextHooks";
+import { useClient, useFinance } from "../../hooks/contextHooks";
 import Form from "../../common/Form";
 import { Finance } from "../../interfaces/Finance";
 import { createFinanceSchema } from "./form schemas/createFinanceSchema";
+import SelectField from "../../common/SelectField";
 
 interface NewFinanceModalProps {
   closeNewFinanceModal: () => void;
@@ -17,6 +18,7 @@ const NewFinanceModal = ({
   isNewFinanceModalOpen
 }: NewFinanceModalProps) => {
   const { createInvoice } = useFinance();
+  const { clients, getClients, isLoading } = useClient();
 
   const onSubmit = (data: Finance) => {
     createInvoice(data).then((res: boolean) => {
@@ -46,17 +48,23 @@ const NewFinanceModal = ({
               alignContent="flex-end"
             >
               <Stack direction="column" spacing={0} width={"85%"}>
-                <InputField
-                  name="invoiceNumber"
-                  label="Invoice number"
-                  type="number"
-                  // defaultValue={0}
+                <InputField name="invoiceNumber" label="Invoice number" />
+                <InputField name="createdAt" label="Created at" type="date" />
+                <SelectField
+                  name="paymentType"
+                  label="Payment type"
+                  arrayData={["Payable", "Receivable"]}
+                  defaultValue="Payable"
                 />
-                <InputField name="createdAt" label="Created at" />
-                <InputField name="paymentType" label="Payment type" />
                 <InputField name="category" label="Category" />
-                <InputField name="subcategory" label="Subcategory" />
-                <InputField name="client" label="Client" />
+                <SelectField
+                  name="client"
+                  label="Client"
+                  arrayData={clients}
+                  getArrayData={getClients}
+                  defaultValue={clients[0]?.id || ""}
+                  isLoading={isLoading}
+                />
                 <InputField name="notes" label="Notes" />
               </Stack>
             </Grid>
@@ -68,20 +76,32 @@ const NewFinanceModal = ({
               alignContent="flex-start"
             >
               <Stack direction="column" spacing={0} width={"85%"}>
-                <InputField name="currency" label="Currency" />
-                <InputField
-                  name="amountWithVat"
-                  label="Amount"
-                  // size='small'
+                <SelectField
+                  name="currency"
+                  label="Currency"
+                  arrayData={["BGN", "USD", "EUR"]}
+                  defaultValue="BGN"
                 />
+                <InputField name="amountWithVat" label="Amount" type="number" />
                 <InputField
                   name="amountWithoutVat"
                   label="Amount without vat"
+                  type="number"
                 />
-                <InputField name="vat" label="Vat percentage" />
-                <InputField name="dueDate" label="Due date" />
-                <InputField name="paymentMadeOn" label="Payment made on" />
-                <InputField name="paymentMethod" label="Payment Method" />
+                <InputField name="vat" label="Vat percentage" type="number" />
+                <InputField name="dueDate" label="Due date" type="date" />
+                <InputField
+                  name="paymentMadeOn"
+                  label="Payment made on"
+                  type="date"
+                  defaultValue={new Date().toISOString().split("T")[0]}
+                />
+                <SelectField
+                  name="paymentMethod"
+                  label="Payment Method"
+                  arrayData={["Cash", "Bank"]}
+                  defaultValue="Bank"
+                />
               </Stack>
             </Grid>
           </Grid>

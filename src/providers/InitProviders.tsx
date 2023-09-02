@@ -8,6 +8,7 @@ import CandidateProvider from "./CandidateProvider";
 import PositionProvider from "./PositionProvider";
 import CompanyProvider from "./CompanyProvider";
 import ProjectProvider from "./ProjectProvider";
+import ClientProvider from "./ClientProvider";
 
 interface IProvider {
   Provider: React.ComponentType<any>;
@@ -36,7 +37,8 @@ const Providers: IProvider[] = [
   { Provider: CandidateProvider },
   { Provider: PositionProvider },
   { Provider: CompanyProvider },
-  { Provider: ProjectProvider }
+  { Provider: ProjectProvider },
+  { Provider: ClientProvider }
 ];
 
 export { Providers };

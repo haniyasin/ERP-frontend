@@ -31,18 +31,13 @@ const Finance = () => {
   return (
     <Container>
       <ToastContainer position="top-center" />
-      <Typography
-        variant="h3"
-        textAlign="center"
-        marginTop={8}
-        marginBottom={6}
-      >
-        Finance Dashboard Page
+      <Typography variant="h4" textAlign="center" margin={5}>
+        Finance Dashboard
       </Typography>
       <Typography variant="h5" textAlign="center" margin={4}>
         Invoices
       </Typography>
-      <Box display="flex" justifyContent="center" margin={5}>
+      <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button onClick={openNewFinanceModal} variant="contained">
           Add Invoice
         </Button>

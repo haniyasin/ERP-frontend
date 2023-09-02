@@ -1,41 +1,69 @@
 import * as yup from "yup";
-import { EMAIL_REGEX } from "../../../utils/constants";
 
 export const createFinanceSchema = yup.object().shape({
-  invoiceNumber: yup.number().required("Invoice Number must be a number"),
+  invoiceNumber: yup
+    .string()
+    .required("Invoice Number is Required!")
+    .min(4, "Invoice number must be at least 4 characters"),
 
-  amountWithVat: yup.number().required("Amount is Required!"),
+  createdAt: yup.string().required("Please select date of creation"),
 
-  amountWithoutVat: yup.number().required("Amount is Required!"),
+  paymentType: yup
+    .string()
+    .required("Payment Type is Required!")
+    .max(100, "Payment Type must be shorter than 100 characters!")
+    .oneOf(
+      ["Payable", "Receivable"],
+      "Payment Type must be either 'Payable' or 'Receivable'"
+    ),
 
-  vat: yup.number().required("Vat is Required!")
-  // email: yup.string().trim()
-  //     .required("Email is Required!")
-  //     .max(40, "Email must be shorter than 40 characters!")
-  //     .matches(EMAIL_REGEX, "Must be a valid Email!"),
+  category: yup
+    .string()
+    .required("Category is Required!")
+    .max(100, "Category must be shorter than 100 characters!"),
 
-  // title: yup.string()
-  //     .required("Title is Required!")
-  //     .max(40, "Title must be shorter than 40 characters!"),
+  client: yup
+    .string()
+    .required("Client is Required!")
+    .max(100, "Client must be shorter than 100 characters!"),
 
-  // departments: yup.array()
-  //     .required("Departments is Required!"),
+  notes: yup
+    .string()
+    .required("Notes is Required!")
+    .max(100, "Notes must be shorter than 100 characters!"),
 
-  // salary: yup.number()
-  //     .required("Salary is Required!")
-  //     .positive("Must be a positive number!")
-  //     .max(999999999, "Salary must be smaller than 9 digits!")
-  //     .typeError("Salary must be a number"),
+  currency: yup
+    .string()
+    .required("Currency is Required!")
+    .max(100, "Currency must be shorter than 100 characters!"),
 
-  // role: yup.string()
-  //     .required("Role is Required!"),
+  amountWithVat: yup
+    .number()
+    .required("Amount is Required!")
+    .typeError("Salary must be a number"),
 
-  // isContractor: yup.boolean()
-  //     .required('Please select an option for contractor'),
+  amountWithoutVat: yup
+    .number()
+    .required("Amount is Required!")
+    .typeError("Salary must be a number"),
 
-  // startingDate: yup.string()
-  //     .required('Please select starting date'),
+  vat: yup
+    .number()
+    .required("Vat is Required!")
+    .typeError("Salary must be a number"),
 
-  // picture: yup.mixed()
-  //     .required('Picture is required'),
+  dueDate: yup.string().required("Please select due date"),
+
+  paymentMadeOn: yup
+    .string()
+    .required("Please select when the payment was made"),
+
+  paymentMethod: yup
+    .string()
+    .required("Payment Method is Required!")
+    .max(100, "Payment Method must be shorter than 100 characters!")
+    .oneOf(
+      ["Cash", "Bank"],
+      "Payment Type must be either 'Payable' or 'Receivable'"
+    )
 });

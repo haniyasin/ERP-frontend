@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import NewUserModal from "./NewUserModal";
 import { ToastContainer } from "react-toastify";
 import NewRoleModal from "./NewRoleModal";
+import NewClientModal from "./NewClientModal";
 
 const Admin = () => {
   const [isNewUserModalOpen, setIsNewUserModalOpen] = useState<boolean>(false);
   const [isNewRoleModalOpen, setIsNewRoleModalOpen] = useState<boolean>(false);
+  const [isNewClientModalOpen, setIsNewClientModalOpen] =
+    useState<boolean>(false);
 
   return (
     <Container>
@@ -21,6 +24,12 @@ const Admin = () => {
         <Button onClick={() => setIsNewRoleModalOpen(true)} variant="contained">
           New Role
         </Button>
+        <Button
+          onClick={() => setIsNewClientModalOpen(true)}
+          variant="contained"
+        >
+          New Client
+        </Button>
       </Stack>
       {isNewUserModalOpen && (
         <NewUserModal
@@ -32,6 +41,12 @@ const Admin = () => {
         <NewRoleModal
           closeNewRoleModal={() => setIsNewRoleModalOpen(false)}
           isNewRoleModalOpen={isNewRoleModalOpen}
+        />
+      )}
+      {isNewClientModalOpen && (
+        <NewClientModal
+          closeNewClientModal={() => setIsNewClientModalOpen(false)}
+          isNewClientModalOpen={isNewClientModalOpen}
         />
       )}
     </Container>
