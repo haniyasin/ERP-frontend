@@ -1,12 +1,13 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { usePosition } from "../../../hooks/contextHooks";
+import { usePosition, useProject } from "../../../hooks/contextHooks";
 import Form from "../../../common/Form";
 import ModalBox from "../../../common/ModalBox";
 import { createPositionSchema } from "./createPositionSchema";
 import { Position } from "../../../interfaces/Position";
 import InputField from "../../../common/InputField";
+import SelectField from "../../../common/SelectField";
 
 interface NewPositionModalProps {
   closeNewPositionModal: () => void;
@@ -18,6 +19,7 @@ const NewPositionModal = ({
   isNewPositionModalOpen
 }: NewPositionModalProps) => {
   const { getPositions, createPosition } = usePosition();
+  const { projects, getProjects, isLoading } = useProject();
 
   const onSubmit = (data: Position) => {
     createPosition(data).then((res: boolean) => {
@@ -49,7 +51,14 @@ const NewPositionModal = ({
             >
               <Stack direction="column" spacing={0} width={"85%"}>
                 <InputField name="name" label="Name" />
-                <InputField name="project" label="Project" />
+                <SelectField
+                  name="project"
+                  label="Project"
+                  defaultValue={projects[0]?.id}
+                  arrayData={projects}
+                  getArrayData={getProjects}
+                  isLoading={isLoading}
+                />
               </Stack>
             </Grid>
             <Grid

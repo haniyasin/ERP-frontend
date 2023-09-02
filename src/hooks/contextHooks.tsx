@@ -7,6 +7,7 @@ import { FinanceContext } from "../providers/FinanceProvider";
 import { PositionContext } from "../providers/PositionProvider";
 import { CandidateContext } from "../providers/CandidateProvider";
 import { CompanyContext } from "../providers/CompanyProvider";
+import { ProjectContext } from "../providers/ProjectProvider";
 
 const useCustomContext = (Context: Context<any>, errorMessage: string) => {
   const context = useContext(Context);
@@ -43,7 +44,7 @@ export const useAuth = () => {
 export const usePosition = () => {
   const context = useCustomContext(
     PositionContext,
-    "useFinance must be used within an FinanceProvider"
+    "usePosition must be used within an FinanceProvider"
   );
   return context;
 };
@@ -51,7 +52,7 @@ export const usePosition = () => {
 export const useCandidate = () => {
   const context = useCustomContext(
     CandidateContext,
-    "useFinance must be used within an FinanceProvider"
+    "useCandidate must be used within an FinanceProvider"
   );
   return context;
 };
@@ -67,7 +68,15 @@ export const useDepartment = () => {
 export const useCompany = () => {
   const context = useCustomContext(
     CompanyContext,
-    "useDepartment must be used within an CompanyProvider"
+    "useCompany must be used within an CompanyProvider"
+  );
+  return context;
+};
+
+export const useProject = () => {
+  const context = useCustomContext(
+    ProjectContext,
+    "useProject must be used within an ProjectProvider"
   );
   return context;
 };

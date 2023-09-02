@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import CandidatesAccordion from "./Candidates/CandidatetsAccordion";
 
 const PositionDashboard = () => {
-  const [isEditPostionClicked, setIsEditPositionClicked] =
+  const [isEditPositionClicked, setIsEditPositionClicked] =
     useState<boolean>(false);
 
   const { handlePositionDashboardClose, getPositionById } = usePosition();
@@ -38,7 +38,7 @@ const PositionDashboard = () => {
             </Button>
           </Stack>
           <PositionInfoAccordion
-            isEditPostionClicked={isEditPostionClicked}
+            isEditPositionClicked={isEditPositionClicked}
             handleEditPositionClose={() => setIsEditPositionClicked(false)}
           />
           <CandidatesAccordion />
