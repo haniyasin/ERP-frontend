@@ -5,7 +5,7 @@ import { usePosition, useUser } from "../../hooks/contextHooks";
 import { ToastContainer } from "react-toastify";
 import NewEmployeeModal from "./employees/modals/NewEmployeeModal";
 import PositionList from "./PositionDashboard/PositionList";
-import NewPositionModal from "./PositionDashboard/NewPositionModal";
+import NewPositionModal from "./PositionDashboard/modals/NewPositionModal";
 import {
   MainTitle,
   TableTitle

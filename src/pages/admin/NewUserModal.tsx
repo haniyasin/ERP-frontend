@@ -10,7 +10,7 @@ import {
   useRole,
   useUser
 } from "../../hooks/contextHooks";
-import { createUserSchema } from "./form schemas/createUserSchema";
+import { createUserSchema } from "./form-schemas/createUserSchema";
 import Form from "../../common/Form";
 import ModalBox from "../../common/ModalBox";
 import CustomRadioGroup from "./CustomRadioGroup";

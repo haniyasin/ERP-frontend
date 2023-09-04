@@ -5,7 +5,7 @@ import Form from "../../../common/Form";
 import { useClient, useInvoice } from "../../../hooks/contextHooks";
 import DeleteInvoiceModal from "./DeleteInvoiceModal";
 import { ToastContainer } from "react-toastify";
-import { editInvoiceSchema } from "../form schemas/editInvoiceSchema";
+import { editInvoiceSchema } from "../form-schemas/editInvoiceSchema";
 import InputField from "../../../common/InputField";
 import SelectField from "../../../common/SelectField";
 import {

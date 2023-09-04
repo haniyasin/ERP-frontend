@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import CandidatesAccordion from "./Candidates/CandidatesAccordion";
 import LoadingComponent from "../../../common/LoadingComponent";
 import { handleNotFound } from "../../../routes/ErrorHandler";
-import DeletePositionModal from "./DeletePositionModal";
+import DeletePositionModal from "./modals/DeletePositionModal";
 
 const PositionDashboard = () => {
   const [positionExists, setPositionExists] = useState<boolean>(true);

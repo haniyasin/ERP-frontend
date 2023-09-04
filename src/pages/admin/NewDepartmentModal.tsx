@@ -7,7 +7,7 @@ import { useHttp } from "../../hooks/useHttp";
 import Form from "../../common/Form";
 import InputField from "../../common/InputField";
 import ModalBox from "../../common/ModalBox";
-import { createClientSchema } from "./form schemas/CreateClientSchema";
+import { createClientSchema } from "./form-schemas/CreateClientSchema";
 
 interface NewDepartmentModalProps {
   closeNewDepartmentModal: () => void;

@@ -6,7 +6,7 @@ import { useCompany } from "../../../hooks/contextHooks";
 import Form from "../../../common/Form";
 import ModalBox from "../../../common/ModalBox";
 import { CompanyContextType } from "../../../providers/CompanyProvider";
-import { createCompanySchema } from "../form schemas/createCompanySchema";
+import { createCompanySchema } from "../form-schemas/createCompanySchema";
 
 interface NewCompanyModalProps {
   closeNewCompanyModal: () => void;

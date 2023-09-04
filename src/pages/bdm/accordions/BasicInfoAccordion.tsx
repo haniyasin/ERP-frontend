@@ -14,7 +14,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LoadingComponent from "../../../common/LoadingComponent";
 import InputField from "../../../common/InputField";
 import Form from "../../../common/Form";
-import { createCompanySchema } from "../form schemas/createCompanySchema";
+import { createCompanySchema } from "../form-schemas/createCompanySchema";
 
 const BasicInfoAccordion = () => {
   const [isEditCompanyClicked, setIsEditCompanyClicked] =

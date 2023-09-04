@@ -5,13 +5,13 @@ import {
   useCompany,
   usePosition,
   useProject
-} from "../../../hooks/contextHooks";
-import Form from "../../../common/Form";
-import ModalBox from "../../../common/ModalBox";
-import { createPositionSchema } from "./createPositionSchema";
-import { Position } from "../../../interfaces/Position";
-import InputField from "../../../common/InputField";
-import SelectField from "../../../common/SelectField";
+} from "../../../../hooks/contextHooks";
+import Form from "../../../../common/Form";
+import ModalBox from "../../../../common/ModalBox";
+import { createPositionSchema } from "../form-schemas/createPositionSchema";
+import { Position } from "../../../../interfaces/Position";
+import InputField from "../../../../common/InputField";
+import SelectField from "../../../../common/SelectField";
 
 interface NewPositionModalProps {
   closeNewPositionModal: () => void;

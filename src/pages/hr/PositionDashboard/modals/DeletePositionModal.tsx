@@ -1,8 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { Button, Stack, Typography } from "@mui/material";
-import { usePosition } from "../../../hooks/contextHooks";
-import ModalBox from "../../../common/ModalBox";
+import { usePosition } from "../../../../hooks/contextHooks";
+import ModalBox from "../../../../common/ModalBox";
 import { useNavigate } from "react-router-dom";
 
 interface DeleteInvoiceModalProps {

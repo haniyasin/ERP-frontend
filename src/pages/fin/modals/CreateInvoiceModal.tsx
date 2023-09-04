@@ -5,7 +5,7 @@ import ModalBox from "../../../common/ModalBox";
 import { useClient, useInvoice } from "../../../hooks/contextHooks";
 import Form from "../../../common/Form";
 import { Invoice } from "../../../interfaces/Invoice";
-import { createInvoiceSchema } from "../form schemas/createInvoiceSchema";
+import { createInvoiceSchema } from "../form-schemas/createInvoiceSchema";
 import SelectField from "../../../common/SelectField";
 import {
   invoiceCurrencies,
