@@ -12,6 +12,7 @@ import {
   invoiceCurrencies,
   invoicePaymentTypes
 } from "../../../utils/constants";
+import { Invoice } from "../../../interfaces/Invoice";
 
 interface NewInvoiceModalProps {
   isOpen: boolean;
@@ -25,11 +26,16 @@ const InvoiceModal = ({ isOpen, closeModal }: NewInvoiceModalProps) => {
   const [isEditInvoiceClicked, setIsEditInvoiceClicked] =
     useState<boolean>(false);
 
-  const { clickedInvoice, handleInvoiceModalClose } = useInvoice();
+  const { clickedInvoice, handleInvoiceModalClose, editInvoice } = useInvoice();
   const { clients, getClients, isLoading } = useClient();
 
-  const onSubmit = () => {
-    setIsEditInvoiceClicked(false);
+  const onSubmit = (data: Invoice) => {
+    if (data.paymentMadeOn === "") data.paymentMadeOn = null;
+    editInvoice(data).then((res: boolean) => {
+      if (res) {
+        setIsEditInvoiceClicked(false);
+      }
+    });
   };
 
   return (
@@ -57,7 +63,7 @@ const InvoiceModal = ({ isOpen, closeModal }: NewInvoiceModalProps) => {
             Delete
           </Button>
         </Stack>
-        <Form onSubmit={() => onSubmit()} validationSchema={editInvoiceSchema}>
+        <Form onSubmit={onSubmit} validationSchema={editInvoiceSchema}>
           <Grid container direction="row" spacing={2} justifyContent="center">
             <Grid
               item

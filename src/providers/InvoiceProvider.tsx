@@ -13,6 +13,7 @@ export type InvoiceContextType = {
   getInvoices: () => void;
   createInvoice: (invoice: Invoice) => Promise<boolean>;
   deleteInvoice: (invoiceNumber: number) => Promise<void>;
+  editInvoice: (inputData: Invoice) => Promise<boolean>;
 };
 
 interface InvoiceProviderProps {
@@ -69,10 +70,18 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
     });
   };
 
-  const updateInvoice = async (id: number, data: Invoice): Promise<boolean> => {
-    return put(`/invoices/updateInvoice/${id}`, data);
+  const editInvoice = async (inputData: Invoice): Promise<boolean> => {
+    let isSuccessful = false;
+    if (!clickedInvoice) return isSuccessful;
+    await put(`/invoices/${clickedInvoice.id}`, inputData).then((res) => {
+      if (res) {
+        isSuccessful = true;
+        getInvoices();
+        toast.success("Invoice edited Successfully!");
+      }
+    });
+    return isSuccessful;
   };
-
   const value = {
     isLoading,
     clickedInvoice,
@@ -81,7 +90,8 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
     invoices,
     getInvoices,
     deleteInvoice,
-    createInvoice
+    createInvoice,
+    editInvoice
   };
 
   return (
