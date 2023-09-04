@@ -1,6 +1,6 @@
 import Bdm from "../pages/bdm/BdmDashboard";
 import Departments from "../pages/DepartmentDashboard";
-import Finance from "../pages/fin/FinanceDashboard";
+import Fin from "../pages/fin/InvoiceDashboard";
 import Hr from "../pages/hr/HrDashboard";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
@@ -34,7 +34,7 @@ export const protectedRoutes: IRoute[] = [
   },
   {
     path: "/fin",
-    Element: Finance,
+    Element: Fin,
     allowedRoles: ["ADMIN", "FIN"]
   },
   {

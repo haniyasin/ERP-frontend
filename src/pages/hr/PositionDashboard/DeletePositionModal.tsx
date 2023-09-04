@@ -5,7 +5,7 @@ import { usePosition } from "../../../hooks/contextHooks";
 import ModalBox from "../../../common/ModalBox";
 import { useNavigate } from "react-router-dom";
 
-interface DeleteFinanceModalProps {
+interface DeleteInvoiceModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
@@ -13,7 +13,7 @@ interface DeleteFinanceModalProps {
 const DeletePositionModal = ({
   isOpen,
   closeModal
-}: DeleteFinanceModalProps) => {
+}: DeleteInvoiceModalProps) => {
   const { deletePosition } = usePosition();
   const navigate = useNavigate();
 

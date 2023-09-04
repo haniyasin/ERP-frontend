@@ -1,23 +1,22 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { useFinance } from "../../hooks/contextHooks";
-import { useHttp } from "../../hooks/useHttp";
-import ModalBox from "../../common/ModalBox";
+import { useInvoice } from "../../../hooks/contextHooks";
+import ModalBox from "../../../common/ModalBox";
 import { Button, Stack, Typography } from "@mui/material";
 
-interface DeleteFinanceModalProps {
+interface DeleteInvoiceModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
 
-const DeleteFinanceModal = ({
+const DeleteInvoiceModal = ({
   isOpen,
   closeModal
-}: DeleteFinanceModalProps) => {
-  const { clickedFinance, deleteFinance } = useFinance();
+}: DeleteInvoiceModalProps) => {
+  const { clickedInvoice, deleteInvoice } = useInvoice();
 
   const onDelete = () => {
-    deleteFinance(clickedFinance.invoiceNumber).then((res: any) => {
+    deleteInvoice(clickedInvoice.invoiceNumber).then((res: any) => {
       if (res) {
         toast.success(res?.data?.message);
         closeModal();
@@ -28,7 +27,7 @@ const DeleteFinanceModal = ({
   return (
     <ModalBox open={isOpen} onClose={closeModal}>
       <Typography variant="h6">
-        Are you sure you want to delete this finance?
+        Are you sure you want to delete this invoice?
       </Typography>
       <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
         <Button onClick={onDelete} variant="contained">
@@ -41,4 +40,4 @@ const DeleteFinanceModal = ({
     </ModalBox>
   );
 };
-export default DeleteFinanceModal;
+export default DeleteInvoiceModal;

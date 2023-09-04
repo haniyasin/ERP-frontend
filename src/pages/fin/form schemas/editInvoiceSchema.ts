@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const createFinanceSchema = yup.object().shape({
+export const editInvoiceSchema = yup.object().shape({
   invoiceNumber: yup
     .string()
     .required("Invoice Number is Required!")

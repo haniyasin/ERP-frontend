@@ -1,13 +1,13 @@
 import { Client } from "./Client";
 
-export interface Finance {
+export interface Invoice {
   id: number;
   invoiceNumber: number;
   createdAt: string;
   paymentType: string;
   category: string;
   subcategory: string;
-  client: string;
+  client: Client;
   notes: string;
   currency: string;
   amountWithVat: number;
@@ -18,7 +18,7 @@ export interface Finance {
   paymentMethod: string;
 }
 
-export interface FinanceSummary {
+export interface InvoiceSummary {
   id: number;
   invoiceNumber: number;
   paymentType: string;

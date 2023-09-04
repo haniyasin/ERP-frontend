@@ -1,30 +1,34 @@
 import React from "react";
 import { Typography, Grid, Stack, Button } from "@mui/material";
-import InputField from "../../common/InputField";
-import ModalBox from "../../common/ModalBox";
-import { useClient, useFinance } from "../../hooks/contextHooks";
-import Form from "../../common/Form";
-import { Finance } from "../../interfaces/Finance";
-import { createFinanceSchema } from "./form schemas/createFinanceSchema";
-import SelectField from "../../common/SelectField";
+import InputField from "../../../common/InputField";
+import ModalBox from "../../../common/ModalBox";
+import { useClient, useInvoice } from "../../../hooks/contextHooks";
+import Form from "../../../common/Form";
+import { Invoice } from "../../../interfaces/Invoice";
+import { createInvoiceSchema } from "../form schemas/createInvoiceSchema";
+import SelectField from "../../../common/SelectField";
+import {
+  invoiceCurrencies,
+  invoicePaymentTypes
+} from "../../../utils/constants";
 
-interface NewFinanceModalProps {
-  closeNewFinanceModal: () => void;
-  isNewFinanceModalOpen: boolean;
+interface NewInvoiceModalProps {
+  closeNewInvoiceModal: () => void;
+  isNewInvoiceModalOpen: boolean;
 }
 
-const NewFinanceModal = ({
-  closeNewFinanceModal,
-  isNewFinanceModalOpen
-}: NewFinanceModalProps) => {
-  const { createInvoice } = useFinance();
+const NewInvoiceModal = ({
+  closeNewInvoiceModal,
+  isNewInvoiceModalOpen
+}: NewInvoiceModalProps) => {
+  const { createInvoice } = useInvoice();
   const { clients, getClients, isLoading } = useClient();
 
-  const onSubmit = (data: Finance) => {
+  const onSubmit = (data: Invoice) => {
     if (data.paymentMadeOn === "") data.paymentMadeOn = null;
     createInvoice(data).then((res: boolean) => {
       if (res) {
-        closeNewFinanceModal();
+        closeNewInvoiceModal();
       }
     });
   };
@@ -32,14 +36,14 @@ const NewFinanceModal = ({
   return (
     <>
       <ModalBox
-        open={isNewFinanceModalOpen}
-        onClose={closeNewFinanceModal}
+        open={isNewInvoiceModalOpen}
+        onClose={closeNewInvoiceModal}
         width={600}
       >
         <Typography variant="h6" textAlign="center" marginBottom={2}>
           Add new Invoice
         </Typography>
-        <Form onSubmit={onSubmit} validationSchema={createFinanceSchema}>
+        <Form onSubmit={onSubmit} validationSchema={createInvoiceSchema}>
           <Grid container direction="row" spacing={2} justifyContent="center">
             <Grid
               item
@@ -54,7 +58,7 @@ const NewFinanceModal = ({
                 <SelectField
                   name="paymentType"
                   label="Payment type"
-                  arrayData={["Payable", "Receivable"]}
+                  arrayData={invoicePaymentTypes}
                   defaultValue="Payable"
                 />
                 <InputField name="category" label="Category" />
@@ -67,6 +71,12 @@ const NewFinanceModal = ({
                   isLoading={isLoading}
                 />
                 <InputField name="notes" label="Notes" />
+                <SelectField
+                  name="currency"
+                  label="Currency"
+                  arrayData={invoiceCurrencies}
+                  defaultValue="BGN"
+                />
               </Stack>
             </Grid>
             <Grid
@@ -77,12 +87,6 @@ const NewFinanceModal = ({
               alignContent="flex-start"
             >
               <Stack direction="column" spacing={0} width={"85%"}>
-                <SelectField
-                  name="currency"
-                  label="Currency"
-                  arrayData={["BGN", "USD", "EUR"]}
-                  defaultValue="BGN"
-                />
                 <InputField name="amountWithVat" label="Amount" type="number" />
                 <InputField
                   name="amountWithoutVat"
@@ -110,7 +114,7 @@ const NewFinanceModal = ({
             <Button type="submit" variant="contained">
               Create
             </Button>
-            <Button onClick={closeNewFinanceModal} variant="contained">
+            <Button onClick={closeNewInvoiceModal} variant="contained">
               Cancel
             </Button>
           </Stack>
@@ -120,4 +124,4 @@ const NewFinanceModal = ({
   );
 };
 
-export default NewFinanceModal;
+export default NewInvoiceModal;

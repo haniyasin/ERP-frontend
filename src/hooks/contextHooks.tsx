@@ -3,7 +3,7 @@ import { UserContext } from "../providers/UserProvider";
 import { RoleContext } from "../providers/RoleProvider";
 import { AuthContext } from "../providers/AuthProvider";
 import { DepartmentContext } from "../providers/DepartmentProvider";
-import { FinanceContext } from "../providers/FinanceProvider";
+import { InvoiceContext } from "../providers/InvoiceProvider";
 import { PositionContext } from "../providers/PositionProvider";
 import { CandidateContext } from "../providers/CandidateProvider";
 import { CompanyContext } from "../providers/CompanyProvider";
@@ -45,7 +45,7 @@ export const useAuth = () => {
 export const usePosition = () => {
   const context = useCustomContext(
     PositionContext,
-    "usePosition must be used within an FinanceProvider"
+    "usePosition must be used within an PositionProvider"
   );
   return context;
 };
@@ -53,7 +53,7 @@ export const usePosition = () => {
 export const useCandidate = () => {
   const context = useCustomContext(
     CandidateContext,
-    "useCandidate must be used within an FinanceProvider"
+    "useCandidate must be used within an CandidateProvider"
   );
   return context;
 };
@@ -82,10 +82,10 @@ export const useProject = () => {
   return context;
 };
 
-export const useFinance = () => {
+export const useInvoice = () => {
   const context = useCustomContext(
-    FinanceContext,
-    "useFinance must be used within an FinanceProvider"
+    InvoiceContext,
+    "useInvoice must be used within an InvoiceProvider"
   );
   return context;
 };

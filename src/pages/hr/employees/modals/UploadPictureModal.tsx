@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Grid, Stack, Typography } from "@mui/material";
-import { Form } from "react-router-dom";
 import InputField from "../../../../common/InputField";
 import ModalBox from "../../../../common/ModalBox";
 import { useUser } from "../../../../hooks/contextHooks";
 import { uploadPictureSchema } from "../form-schemas/uploadPictureSchema";
+import Form from "../../../../common/Form";
 
 interface UploadPictureModalProps {
   open: boolean;

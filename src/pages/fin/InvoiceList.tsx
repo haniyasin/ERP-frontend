@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useFinance } from "../../hooks/contextHooks";
+import { useInvoice } from "../../hooks/contextHooks";
 
 import {
   Paper,
@@ -10,15 +10,15 @@ import {
   TableRow
 } from "@mui/material";
 
-import { Finance, FinanceSummary } from "../../interfaces/Finance";
+import { Invoice, InvoiceSummary } from "../../interfaces/Invoice";
 import { theme } from "../../styles/Theme";
 import { CenteredTableCell } from "../../styles/styled components/CenteredTableCell";
 
-const FinanceList = () => {
-  const { handleFinanceModalOpen, finances } = useFinance();
+const InvoiceList = () => {
+  const { handleInvoiceModalOpen, invoices } = useInvoice();
 
   const getColumnHeaders = useCallback(() => {
-    if (finances.length === 0) return null;
+    if (invoices.length === 0) return null;
 
     return (
       <>
@@ -28,10 +28,10 @@ const FinanceList = () => {
         <CenteredTableCell>Payment Type</CenteredTableCell>
       </>
     );
-  }, [finances]);
+  }, [invoices]);
 
-  const getTableCells = useCallback((finance: FinanceSummary) => {
-    const { client, amountWithVat, dueDate, paymentType } = finance;
+  const getTableCells = useCallback((invoice: InvoiceSummary) => {
+    const { client, amountWithVat, dueDate, paymentType } = invoice;
     return (
       <>
         <CenteredTableCell>{client?.name}</CenteredTableCell>
@@ -59,14 +59,14 @@ const FinanceList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {finances.map((finance: Finance) => (
+          {invoices.map((invoice: Invoice) => (
             <TableRow
-              key={finance.id}
+              key={invoice.id}
               hover
-              onClick={() => handleFinanceModalOpen(finance)}
+              onClick={() => handleInvoiceModalOpen(invoice)}
               style={{ cursor: "pointer" }}
             >
-              {getTableCells(finance)}
+              {getTableCells(invoice)}
             </TableRow>
           ))}
         </TableBody>
@@ -75,4 +75,4 @@ const FinanceList = () => {
   );
 };
 
-export default FinanceList;
+export default InvoiceList;

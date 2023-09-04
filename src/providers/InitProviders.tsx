@@ -3,7 +3,7 @@ import AuthProvider from "./AuthProvider";
 import UserProvider from "./UserProvider";
 import RoleProvider from "./RoleProvider";
 import DepartmentProvider from "./DepartmentProvider";
-import FinanceProvider from "./FinanceProvider";
+import InvoiceProvider from "./InvoiceProvider";
 import CandidateProvider from "./CandidateProvider";
 import PositionProvider from "./PositionProvider";
 import CompanyProvider from "./CompanyProvider";
@@ -33,7 +33,7 @@ const Providers: IProvider[] = [
   { Provider: UserProvider },
   { Provider: RoleProvider },
   { Provider: DepartmentProvider },
-  { Provider: FinanceProvider },
+  { Provider: InvoiceProvider },
   { Provider: CandidateProvider },
   { Provider: PositionProvider },
   { Provider: CompanyProvider },
