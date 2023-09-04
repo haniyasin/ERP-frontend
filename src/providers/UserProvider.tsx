@@ -45,7 +45,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
   const handleEmployeeDashboardOpen = (employee: User) => {
     setOpenedEmployee(employee);
-    navigate(`/employee-dashboard/${employee.id}`);
+    navigate(`/employee/${employee.id}`);
   };
 
   const handleEmployeeDashboardClose = () => {

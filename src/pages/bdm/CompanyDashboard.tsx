@@ -1,27 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { useCompany } from "../../hooks/contextHooks";
 import BasicInfoAccordion from "./accordions/BasicInfoAccordion";
 import { ToastContainer } from "react-toastify";
-import DeleteEmployeeModal from "../hr/employees/modals/DeleteEmployeeModal";
+import { useParams } from "react-router-dom";
+import LoadingComponent from "../../common/LoadingComponent";
+import { handleNotFound } from "../../routes/ErrorHandler";
+import DeleteCompanyModal from "./modals/DeleteCompanyModal";
+import VacantPositionsAccordion from "./accordions/vacantPositions/VacantPositionsAccordion";
 
 const CompanyDashboard = () => {
+  const [companyExists, setCompanyExists] = useState<boolean>(true);
   const [isDeleteCompanyClicked, setIsDeleteCompanyClicked] =
     useState<boolean>(false);
-  const [isEditCompanyClicked, setIsEditCompanyClicked] =
-    useState<boolean>(false);
+  const { companyId } = useParams();
 
   const { clickedCompany, handleCompanyDashboardClose, getCompanyById } =
     useCompany();
 
+  useEffect(() => {
+    getCompanyById(companyId).then((res: any) => {
+      if (res?.data) {
+        setCompanyExists(false);
+      }
+    });
+  }, []);
+
+  if (!companyExists) return handleNotFound();
+
+  if (!clickedCompany) return <LoadingComponent />;
+
   return (
     <Container sx={{ marginTop: 8 }} className="employee-pic">
       <ToastContainer position="top-center" />
-      <DeleteEmployeeModal
+      <DeleteCompanyModal
         isOpen={isDeleteCompanyClicked}
         closeModal={() => setIsDeleteCompanyClicked(false)}
       />
-      <Typography variant="h6" textAlign="center" marginBottom={2}>
+      <Typography variant="h4" textAlign="center" marginBottom={3}>
         Company information
       </Typography>
       <Grid container direction="row" justifyContent="center" spacing={2}>
@@ -31,22 +47,14 @@ const CompanyDashboard = () => {
               Back
             </Button>
             <Button
-              onClick={() => setIsEditCompanyClicked((prev) => !prev)}
-              variant="contained"
-            >
-              Edit
-            </Button>
-            <Button
               onClick={() => setIsDeleteCompanyClicked(true)}
               variant="contained"
             >
               Delete
             </Button>
           </Stack>
-          <BasicInfoAccordion
-            isEditCompanyClicked={isEditCompanyClicked}
-            handleEditCompanyClose={() => setIsDeleteCompanyClicked(false)}
-          />
+          <BasicInfoAccordion />
+          <VacantPositionsAccordion />
         </Grid>
       </Grid>
     </Container>

@@ -44,6 +44,9 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
   const registerAndLogin = (data: User) => {
     post("/auth/register", { ...data, startDate: new Date() }).then((res) => {
       handleLoginResponse(res);
+      toast.success(
+        "You were successfully registered as an Administrator and you will receive your password via email"
+      );
     });
   };
 

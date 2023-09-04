@@ -1,5 +1,4 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useHttp } from "../hooks/useHttp";
 import { toast } from "react-toastify";
 import { Finance } from "../interfaces/Finance";
@@ -20,8 +19,6 @@ interface FinanceProviderProps {
   children: ReactNode;
 }
 
-// const defaultContext = { userExists: null, isLoading: true}
-
 export const FinanceContext = createContext<FinanceContextType>(
   {} as FinanceContextType
 );
@@ -32,7 +29,6 @@ const FinanceProvider = ({ children }: FinanceProviderProps) => {
   const [finances, setFinances] = useState<Finance[]>([]);
 
   const { get, del, post, put } = useHttp();
-  const navigate = useNavigate();
 
   const handleFinanceModalOpen = (finance: Finance) => {
     setClickedFinance(finance);
@@ -55,16 +51,17 @@ const FinanceProvider = ({ children }: FinanceProviderProps) => {
     get("/invoices").then((res) => {
       if (res) {
         setFinances(res.data);
+        setIsLoading(false);
       }
     });
   };
 
   const createInvoice = async (data: Finance): Promise<boolean> => {
-    return post("/invoices/createInvoice", data).then((res) => {
+    return post("/invoices", data).then((res) => {
       if (res) {
-        toast.success("Succesfully created invoice");
         getFinances();
         handleFinanceModalClose();
+        toast.success("Successfully created invoice");
         return true;
       } else {
         return false;

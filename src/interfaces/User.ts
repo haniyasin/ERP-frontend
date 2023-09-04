@@ -20,7 +20,7 @@ export interface User {
   currentProject?: Project;
   gross?: number;
   leaveDaysLeft?: number;
-  startDate?: Date;
+  startDate: Date;
   document?: any;
   [key: string]:
     | string

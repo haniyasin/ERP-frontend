@@ -8,7 +8,7 @@ export const createPositionSchema = yup.object().shape({
 
   description: yup.string().required("Description is Required!"),
 
-  project: yup.string().required("Project is Required!"),
+  project: yup.number().required("Project is Required!"),
 
-  company: yup.string().required("Company is Required!")
+  company: yup.number().required("Company is Required!")
 });

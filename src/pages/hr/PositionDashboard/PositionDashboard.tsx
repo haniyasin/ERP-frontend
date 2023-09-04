@@ -8,10 +8,11 @@ import { useParams } from "react-router-dom";
 import CandidatesAccordion from "./Candidates/CandidatesAccordion";
 import LoadingComponent from "../../../common/LoadingComponent";
 import { handleNotFound } from "../../../routes/ErrorHandler";
+import DeletePositionModal from "./DeletePositionModal";
 
 const PositionDashboard = () => {
   const [positionExists, setPositionExists] = useState<boolean>(true);
-  const [isEditPositionClicked, setIsEditPositionClicked] =
+  const [isDeletePositionClicked, setIsDeletePositionClicked] =
     useState<boolean>(false);
 
   const { clickedPosition, handlePositionDashboardClose, getPositionById } =
@@ -33,7 +34,7 @@ const PositionDashboard = () => {
   return (
     <Container sx={{ marginTop: 8 }}>
       <ToastContainer position="top-center" />
-      <Typography variant="h6" textAlign="center" marginBottom={2}>
+      <Typography variant="h4" textAlign="center" marginBottom={3}>
         Position information
       </Typography>
       <Grid container direction="row" justifyContent="center" spacing={2}>
@@ -43,19 +44,20 @@ const PositionDashboard = () => {
               Back
             </Button>
             <Button
-              onClick={() => setIsEditPositionClicked((prev) => !prev)}
+              onClick={() => setIsDeletePositionClicked(true)}
               variant="contained"
             >
-              Edit
+              Delete
             </Button>
           </Stack>
-          <PositionInfoAccordion
-            isEditPositionClicked={isEditPositionClicked}
-            handleEditPositionClose={() => setIsEditPositionClicked(false)}
-          />
+          <PositionInfoAccordion />
           <CandidatesAccordion />
         </Grid>
       </Grid>
+      <DeletePositionModal
+        isOpen={isDeletePositionClicked}
+        closeModal={() => setIsDeletePositionClicked(false)}
+      />
     </Container>
   );
 };

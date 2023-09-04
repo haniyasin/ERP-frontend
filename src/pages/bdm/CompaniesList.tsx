@@ -20,18 +20,24 @@ const CompanyList = () => {
     if (companies.length === 0) return null;
 
     const company = companies[0];
-
     const formattedHeaders = formatHeaders(Object.keys(company));
 
     return formattedHeaders.map((key) => {
-      if (key !== "Id")
+      if (key === "Positions") return null;
+      if (key !== "Id" && key !== "Deleted At")
         return <CenteredTableCell key={key}>{key}</CenteredTableCell>;
     });
   }, [companies]);
 
   const getTableCells = useCallback((company: Company) => {
     return Object.entries(company).map(([key, value], index) => {
-      if (key !== "id")
+      if (key === "positions") return null;
+      if (key === "projects" || key === "positions")
+        return (
+          <CenteredTableCell key={index}>{value.length}</CenteredTableCell>
+        );
+
+      if (key !== "id" && key !== "deletedAt")
         return <CenteredTableCell key={index}>{value}</CenteredTableCell>;
     });
   }, []);

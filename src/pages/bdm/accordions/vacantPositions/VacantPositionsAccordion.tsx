@@ -1,26 +1,24 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Typography } from "@mui/material";
-import { useState } from "react"
-import { boolean } from "yup"
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography
+} from "@mui/material";
+import React from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import VacantPositionList from "./VacantPositionsList";
 
-interface VacantPositionsAccordionProps {
-    isEditCompanyClicked: boolean
-}
+const VacantPositionsAccordion = () => {
+  return (
+    <Accordion elevation={0} defaultExpanded={false}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Typography variant="h6">Vacant Positions</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <VacantPositionList />
+      </AccordionDetails>
+    </Accordion>
+  );
+};
 
-
-const VacantPositionsAccordion = ({ isEditCompanyClicked }: VacantPositionsAccordionProps) => {
-    const [isNewVacantPositionModalOpen, setisNewVacantPositionModalOpen] = useState<boolean>(false);
-    // const [companies]
-
-
-    return (
-        <Accordion elevation={0} defaultExpanded={false}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6">VacantPositions</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-            {/* how to list all vacant positions */}
-        </AccordionDetails>
-      </Accordion>
-    )
-}
+export default VacantPositionsAccordion;

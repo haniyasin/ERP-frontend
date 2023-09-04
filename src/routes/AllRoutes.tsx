@@ -43,17 +43,17 @@ export const protectedRoutes: IRoute[] = [
     allowedRoles: ["ADMIN", "BDM"]
   },
   {
-    path: "/position-dashboard/:positionId",
+    path: "/position/:positionId",
     Element: PositionDashboard,
     allowedRoles: ["ADMIN", "HR"]
   },
   {
-    path: "/employee-dashboard/:employeeId",
+    path: "/employee/:employeeId",
     Element: EmployeeDashboard,
     allowedRoles: ["ADMIN", "HR"]
   },
   {
-    path: "/company-dashboard/:companyId",
+    path: "/company/:companyId",
     Element: CompanyDashboard,
     allowedRoles: ["ADMIN", "BDM"]
   },

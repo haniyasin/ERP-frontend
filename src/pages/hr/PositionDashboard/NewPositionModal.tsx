@@ -27,7 +27,11 @@ const NewPositionModal = ({
   const { companies, getCompanies, isLoading: isCompanyLoading } = useCompany();
 
   const onSubmit = (data: Position) => {
-    createPosition(data).then((res: boolean) => {
+    createPosition({
+      ...data,
+      company: { id: data.company },
+      project: { id: data.project }
+    }).then((res: boolean) => {
       if (res) {
         getPositions();
         closeNewPositionModal();
@@ -57,7 +61,7 @@ const NewPositionModal = ({
               <Stack direction="column" spacing={0} width={"85%"}>
                 <InputField name="name" label="Name" />
                 <SelectField
-                  name="projectId"
+                  name="project"
                   label="Project"
                   defaultValue={projects[0]?.id || ""}
                   arrayData={projects}
@@ -76,7 +80,7 @@ const NewPositionModal = ({
               <Stack direction="column" spacing={0} width={"85%"}>
                 <InputField name="description" label="Description" />
                 <SelectField
-                  name="companyId"
+                  name="company"
                   label="Company"
                   defaultValue={companies[0]?.id || ""}
                   arrayData={companies}

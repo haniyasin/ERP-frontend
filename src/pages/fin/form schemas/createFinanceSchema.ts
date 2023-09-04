@@ -54,9 +54,7 @@ export const createFinanceSchema = yup.object().shape({
 
   dueDate: yup.string().required("Please select due date"),
 
-  paymentMadeOn: yup
-    .string()
-    .required("Please select when the payment was made"),
+  paymentMadeOn: yup.string().nullable(),
 
   paymentMethod: yup
     .string()

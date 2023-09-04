@@ -80,7 +80,7 @@ const FinanceModal = ({ isOpen, closeModal }: NewFinanceModalProps) => {
           >
             <Stack direction="column" spacing={0} width={"75%"}>
               <Typography variant="h6">
-                Client: {clickedFinance.client}
+                Client: {clickedFinance.client.name}
               </Typography>
               <Typography variant="h6">
                 Notes: {clickedFinance.notes}

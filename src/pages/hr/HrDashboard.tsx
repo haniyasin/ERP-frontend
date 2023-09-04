@@ -6,6 +6,10 @@ import { ToastContainer } from "react-toastify";
 import NewEmployeeModal from "./employees/modals/NewEmployeeModal";
 import PositionList from "./PositionDashboard/PositionList";
 import NewPositionModal from "./PositionDashboard/NewPositionModal";
+import {
+  MainTitle,
+  TableTitle
+} from "../../styles/styled components/StyledTypographies";
 
 const HR = () => {
   const [isNewEmployeeModalOpen, setIsNewEmployeeModalOpen] =
@@ -23,12 +27,8 @@ const HR = () => {
   return (
     <Container>
       <ToastContainer position="top-center" />
-      <Typography variant="h4" textAlign="center" margin={5}>
-        Human Resources
-      </Typography>
-      <Typography variant="h5" textAlign="center" margin={4}>
-        Employees
-      </Typography>
+      <MainTitle variant="h4">Human Resources</MainTitle>
+      <TableTitle variant="h5">Employees</TableTitle>
       <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button
           onClick={() => setIsNewEmployeeModalOpen(true)}
@@ -39,9 +39,7 @@ const HR = () => {
       </Box>
       <EmployeeList />
 
-      <Typography variant="h5" textAlign="center" margin={4}>
-        Positions
-      </Typography>
+      <TableTitle variant="h5">Vacant Positions</TableTitle>
       <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button
           onClick={() => setIsNewPositionModalOpen(true)}

@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import { useFinance } from "../../hooks/contextHooks";
-import NewUserModal from "../admin/NewUserModal";
 import { ToastContainer } from "react-toastify";
-import EmployeeList from "../hr/employees/EmployeeList";
 import FinanceList from "./FinanceList";
 import FinanceModal from "./FinanceModal";
 import NewFinanceModal from "./CreateFinanceModal";
+import {
+  MainTitle,
+  TableTitle
+} from "../../styles/styled components/StyledTypographies";
 
 const Finance = () => {
-  //const [isNewFinanceModalOpened, setIsNewFinanceModalOpened] = useState<boolean>(false);
-  const { clickedFinance, handleFinanceModalClose, getFinances } = useFinance();
   const [isNewFinanceModalOpened, setIsNewFinanceModalOpened] =
     useState<boolean>(false);
-
-  const [isNewFinModalOpen, setNewFinModalOpen] = useState(false);
+  const { clickedFinance, handleFinanceModalClose, getFinances } = useFinance();
 
   const openNewFinanceModal = () => {
-    setNewFinModalOpen(true);
+    setIsNewFinanceModalOpened(true);
   };
 
   const closeNewFinanceModal = () => {
-    setNewFinModalOpen(false);
+    setIsNewFinanceModalOpened(false);
   };
 
   useEffect(() => {
@@ -31,19 +30,15 @@ const Finance = () => {
   return (
     <Container>
       <ToastContainer position="top-center" />
-      <Typography variant="h4" textAlign="center" margin={5}>
-        Finance Dashboard
-      </Typography>
-      <Typography variant="h5" textAlign="center" margin={4}>
-        Invoices
-      </Typography>
+      <MainTitle variant="h4">Finance Dashboard</MainTitle>
+      <TableTitle variant="h5">Invoices</TableTitle>
       <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button onClick={openNewFinanceModal} variant="contained">
           Add Invoice
         </Button>
-        {isNewFinModalOpen && (
+        {isNewFinanceModalOpened && (
           <NewFinanceModal
-            isNewFinanceModalOpen={isNewFinModalOpen}
+            isNewFinanceModalOpen={isNewFinanceModalOpened}
             closeNewFinanceModal={closeNewFinanceModal}
           />
         )}

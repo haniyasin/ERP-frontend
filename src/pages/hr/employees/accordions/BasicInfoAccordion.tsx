@@ -121,7 +121,7 @@ const BasicInfoAccordion = ({ employeeLeft }: BasicInfoAccordionProps) => {
                   label="Starting Date"
                   type="date"
                   defaultValue={formatDateToLocaleTime(
-                    openedEmployee.startingDate
+                    openedEmployee.startDate
                   )}
                   readOnly={!isEditEmployeeClicked}
                 />

@@ -40,6 +40,7 @@ const NewEmployeeModal = ({
       document: data.document[0],
       salary: { net: data.net, gross: data.gross, startDate: data.startDate }
     };
+
     registerUser(inputData).then((res: boolean) => {
       if (res) {
         getEmployees();
@@ -101,7 +102,7 @@ const NewEmployeeModal = ({
                 <SelectField
                   name="departments"
                   label="Departments"
-                  defaultValue={[0]}
+                  defaultValue={[departments[0]?.id] || ""}
                   arrayData={departments}
                   getArrayData={getDepartments}
                   isLoading={isDepartmentLoading}

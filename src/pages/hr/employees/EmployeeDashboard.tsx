@@ -42,7 +42,7 @@ const EmployeeDashboard = () => {
         isOpen={isDeleteEmployeeClicked}
         closeModal={() => setIsDeleteEmployeeClicked(false)}
       />
-      <Typography variant="h4" textAlign="center" marginBottom={4}>
+      <Typography variant="h4" textAlign="center" marginBottom={3}>
         Employee information
       </Typography>
       <Grid container direction="row" justifyContent="center" spacing={2}>

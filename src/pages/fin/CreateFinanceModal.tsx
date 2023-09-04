@@ -21,6 +21,7 @@ const NewFinanceModal = ({
   const { clients, getClients, isLoading } = useClient();
 
   const onSubmit = (data: Finance) => {
+    if (data.paymentMadeOn === "") data.paymentMadeOn = null;
     createInvoice(data).then((res: boolean) => {
       if (res) {
         closeNewFinanceModal();

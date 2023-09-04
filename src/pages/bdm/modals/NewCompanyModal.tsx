@@ -1,12 +1,12 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import InputField from "../../common/InputField";
+import InputField from "../../../common/InputField";
 import "react-toastify/dist/ReactToastify.css";
-import { useCompany } from "../../hooks/contextHooks";
-import Form from "../../common/Form";
-import ModalBox from "../../common/ModalBox";
-import { CompanyContextType } from "../../providers/CompanyProvider";
-import { createCompanySchema } from "./form schemas/createCompanySchema";
+import { useCompany } from "../../../hooks/contextHooks";
+import Form from "../../../common/Form";
+import ModalBox from "../../../common/ModalBox";
+import { CompanyContextType } from "../../../providers/CompanyProvider";
+import { createCompanySchema } from "../form schemas/createCompanySchema";
 
 interface NewCompanyModalProps {
   closeNewCompanyModal: () => void;

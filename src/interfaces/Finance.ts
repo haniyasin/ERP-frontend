@@ -14,7 +14,7 @@ export interface Finance {
   amountWithoutVat: number;
   vat: number;
   dueDate: string;
-  paymentMadeOn: string;
+  paymentMadeOn: string | null;
   paymentMethod: string;
 }
 

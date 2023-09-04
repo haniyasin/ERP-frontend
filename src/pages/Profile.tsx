@@ -3,6 +3,7 @@ import { Container, Typography, Grid } from "@mui/material";
 import { useHttp } from "../hooks/useHttp";
 import { User } from "../interfaces/User";
 import LoadingComponent from "../common/LoadingComponent";
+import { formatDateToLocaleTime } from "../utils/formatDataToLocaleTime";
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -46,7 +47,7 @@ const Profile = () => {
             Starting Date
           </Typography>
           <Typography variant="body1">
-            {/* {new Date(user.startingDate).toISOString().split("T")[0]} */}
+            {formatDateToLocaleTime(user?.startDate)}
           </Typography>
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import React, { ReactNode, createContext, useState } from "react";
 import { useHttp } from "../hooks/useHttp";
 import { toast } from "react-toastify";
 import { Company } from "../interfaces/Company";
@@ -11,7 +11,8 @@ export type CompanyContextType = {
   handleCompanyDashboardClose: () => void;
   companies: Company[];
   getCompanies: () => void;
-  deleteCompany: (name: string) => void;
+  getCompanyById: (id: number) => Promise<void>;
+  deleteCompany: (id: number) => Promise<boolean>;
   addCompany: (data: Company) => Promise<boolean>;
   editCompany: (inputData: Company) => Promise<boolean>;
 };
@@ -34,7 +35,7 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
 
   const handleCompanyDashboardOpen = (company: Company) => {
     setClickedCompany(company);
-    navigate(`/company-dashboard/${company?.id}`);
+    navigate(`/company/${company?.id}`);
   };
 
   const handleCompanyDashboardClose = () => {
@@ -42,15 +43,17 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
     navigate("/bdm");
   };
 
-  const deleteCompany = async (name: string) => {
+  const deleteCompany = async (id: number) => {
     let isSuccessful = false;
     if (!clickedCompany) return isSuccessful;
-    await del("/companies", { data: { name } }).then((res) => {
+    await del(`/companies/:${id}`).then((res) => {
       if (res) {
         isSuccessful = true;
         handleCompanyDashboardClose();
+        toast.success("Company deleted Successfully!");
       }
     });
+    return isSuccessful;
   };
 
   const getCompanies = () => {
@@ -62,10 +65,16 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
     });
   };
 
+  const getCompanyById = async (id: number) => {
+    await get(`companies/${id}`).then((res) => {
+      if (res) setClickedCompany(res.data);
+    });
+  };
+
   const addCompany = async (data: Company): Promise<boolean> => {
     let isSuccessful = false;
 
-    await post("/companies/addCompany", data).then((res) => {
+    await post("/companies", data).then((res) => {
       if (res) {
         isSuccessful = true;
         toast.success("Company created Successfully!");
@@ -76,16 +85,16 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
   };
 
   const editCompany = async (inputData: Company): Promise<boolean> => {
-    let isSuccessfull = false;
-    if (!clickedCompany) return isSuccessfull;
-    await put(`companies/${clickedCompany.name}`, inputData).then((res) => {
+    let isSuccessful = false;
+    if (!clickedCompany) return isSuccessful;
+    await put(`/companies/${clickedCompany.id}`, inputData).then((res) => {
       if (res) {
-        isSuccessfull = true;
+        isSuccessful = true;
         getCompanies();
-        toast.success("Successfully edited Company!");
+        toast.success("Company edited Successfully!");
       }
     });
-    return isSuccessfull;
+    return isSuccessful;
   };
 
   const value = {
@@ -95,6 +104,7 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
     handleCompanyDashboardClose,
     companies,
     getCompanies,
+    getCompanyById,
     deleteCompany,
     addCompany,
     editCompany

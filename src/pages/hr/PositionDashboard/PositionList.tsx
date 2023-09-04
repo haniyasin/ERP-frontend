@@ -22,7 +22,7 @@ const PositionList = () => {
     const position = positions[0];
 
     return Object.keys(position)
-      .filter((key) => key !== "id")
+      .filter((key) => key !== "id" && key !== "isVacant")
       .map((key) => (
         <CenteredTableCell key={key}>
           {key[0].toUpperCase() + key.slice(1)}
@@ -32,7 +32,7 @@ const PositionList = () => {
 
   const getTableCells = useCallback((position: Position) => {
     return Object.entries(position).map(([key, value]) => {
-      if (key === "id") return null;
+      if (key === "id" || key === "isVacant") return null;
       if (key === "project" || key === "company")
         return <CenteredTableCell key={key}>{value?.name}</CenteredTableCell>;
       return <CenteredTableCell key={key}>{value}</CenteredTableCell>;

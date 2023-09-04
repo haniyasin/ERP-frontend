@@ -7,6 +7,7 @@ export interface Position {
   name?: string;
   project?: Project;
   description?: string;
+  isVacant: boolean;
   company: Company;
   candidate?: any;
 }

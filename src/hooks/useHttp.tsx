@@ -8,9 +8,7 @@ const useHttp = () => {
 
   api.interceptors.request.use((config) => {
     const token = getLoginToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    if (token) config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   });
@@ -32,9 +30,8 @@ const useHttp = () => {
     (url: string, requestData: any, contentType?: string) =>
       request(() => {
         const headers: AxiosRequestConfig["headers"] = {};
-        if (contentType) {
-          headers["Content-Type"] = contentType;
-        }
+        if (contentType) headers["Content-Type"] = contentType;
+
         return api.post(url, requestData, { headers });
       }),
     [request, api]
@@ -44,9 +41,7 @@ const useHttp = () => {
     (url: string, requestData: any, contentType?: string) =>
       request(() => {
         const headers: AxiosRequestConfig["headers"] = {};
-        if (contentType) {
-          headers["Content-Type"] = contentType;
-        }
+        if (contentType) headers["Content-Type"] = contentType;
         return api.put(url, requestData, { headers });
       }),
     [request, api]

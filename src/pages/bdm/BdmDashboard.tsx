@@ -3,7 +3,11 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { useCompany } from "../../hooks/contextHooks";
 import CompanyList from "./CompaniesList";
 import { ToastContainer } from "react-toastify";
-import NewCompanyModal from "./NewCompanyModal";
+import NewCompanyModal from "./modals/NewCompanyModal";
+import {
+  MainTitle,
+  TableTitle
+} from "../../styles/styled components/StyledTypographies";
 
 const BDM = () => {
   const [isNewCompanyModalOpen, setIsNewCompanyModalOpen] =
@@ -16,12 +20,8 @@ const BDM = () => {
   return (
     <Container>
       <ToastContainer position="top-center" />
-      <Typography variant="h4" textAlign="center" margin={5}>
-        Business Development Management
-      </Typography>
-      <Typography variant="h5" textAlign="center" margin={4}>
-        Companies
-      </Typography>
+      <MainTitle variant="h4">Business Development Management</MainTitle>
+      <TableTitle variant="h5">Companies</TableTitle>
       <Box display="flex" justifyContent="center" marginBottom={3}>
         <Button
           onClick={() => setIsNewCompanyModalOpen(true)}

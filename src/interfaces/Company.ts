@@ -1,8 +1,11 @@
+import { Project } from "./Project";
+
 export interface Company {
   id: number;
   name: string;
   description: string;
-  contacts: string[];
+  contacts: string;
+  projects: Project[];
   employeeSize: number;
   openPositions: number;
   relatedDocuments?: any;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -20,15 +20,10 @@ import { Position } from "../../../interfaces/Position";
 import { createPositionSchema } from "./createPositionSchema";
 import SelectField from "../../../common/SelectField";
 
-interface PositionInfoAccordion {
-  isEditPositionClicked: boolean;
-  handleEditPositionClose: () => void;
-}
+const PositionInfoAccordion = () => {
+  const [isEditPositionClicked, setIsEditPositionClicked] =
+    useState<boolean>(false);
 
-const PositionInfoAccordion = ({
-  isEditPositionClicked,
-  handleEditPositionClose
-}: PositionInfoAccordion) => {
   const { clickedPosition, editPosition } = usePosition();
   const { projects, getProjects, isLoading } = useProject();
   const {
@@ -38,9 +33,13 @@ const PositionInfoAccordion = ({
   } = useCompany();
 
   const onSubmit = (positionData: Position) => {
-    editPosition(positionData).then((res: boolean) => {
+    editPosition({
+      ...positionData,
+      company: { id: positionData.company },
+      project: { id: positionData.project }
+    }).then((res: boolean) => {
       if (res) {
-        handleEditPositionClose();
+        setIsEditPositionClicked(false);
       }
     });
   };
@@ -52,12 +51,7 @@ const PositionInfoAccordion = ({
       </AccordionSummary>
       <AccordionDetails>
         <Form onSubmit={onSubmit} validationSchema={createPositionSchema}>
-          <Grid
-            container
-            direction="row"
-            spacing={1}
-            marginLeft={6}
-          >
+          <Grid container direction="row" spacing={1} marginLeft={6}>
             <Grid
               item
               container
@@ -110,6 +104,12 @@ const PositionInfoAccordion = ({
             </Grid>
           </Grid>
           <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
+            <Button
+              onClick={() => setIsEditPositionClicked((prev) => !prev)}
+              variant="contained"
+            >
+              Edit
+            </Button>
             <Button
               type="submit"
               variant="contained"
