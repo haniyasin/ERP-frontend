@@ -5,10 +5,10 @@ import { Container, Typography, Grid, Stack, Button } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import PositionInfoAccordion from "./PositionInfoAccordion";
 import { useParams } from "react-router-dom";
-import CandidatesAccordion from "./Candidates/CandidatesAccordion";
+import CandidatesAccordion from "./candidates/CandidatesAccordion";
 import LoadingComponent from "../../../common/LoadingComponent";
 import { handleNotFound } from "../../../routes/ErrorHandler";
-import DeletePositionModal from "./modals/DeletePositionModal";
+import DeletePositionModal from "../positions/modals/DeletePositionModal";
 
 const PositionDashboard = () => {
   const [positionExists, setPositionExists] = useState<boolean>(true);

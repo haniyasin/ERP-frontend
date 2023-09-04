@@ -17,7 +17,7 @@ import {
   useProject
 } from "../../../hooks/contextHooks";
 import { Position } from "../../../interfaces/Position";
-import { createPositionSchema } from "./form-schemas/createPositionSchema";
+import { createPositionSchema } from "../positions/form-schemas/createPositionSchema";
 import SelectField from "../../../common/SelectField";
 
 const PositionInfoAccordion = () => {

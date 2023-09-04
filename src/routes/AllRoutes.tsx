@@ -1,13 +1,14 @@
 import Bdm from "../pages/bdm/BdmDashboard";
 import Departments from "../pages/DepartmentDashboard";
 import Fin from "../pages/fin/InvoiceDashboard";
-import Hr from "../pages/hr/HrDashboard";
+import HrEmployee from "../pages/hr/employees/HrEmployeesDashboard";
+import HrPosition from "../pages/hr/positions/HrPositionsDashboard";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
 import Unauthorized from "../pages/Unauthorized";
 import Admin from "../pages/admin/AdminDashboard";
 import EmployeeDashboard from "../pages/hr/employees/EmployeeDashboard";
-import PositionDashboard from "../pages/hr/PositionDashboard/PositionDashboard";
+import PositionDashboard from "../pages/hr/positions/PositionDashboard";
 import CompanyDashboard from "../pages/bdm/CompanyDashboard";
 
 export interface IRoute {
@@ -28,8 +29,13 @@ export const protectedRoutes: IRoute[] = [
     allowedRoles: ["ADMIN"]
   },
   {
-    path: "/hr",
-    Element: Hr,
+    path: "/hr/employees",
+    Element: HrEmployee,
+    allowedRoles: ["ADMIN", "HR"]
+  },
+  {
+    path: "/hr/positions",
+    Element: HrPosition,
     allowedRoles: ["ADMIN", "HR"]
   },
   {
