@@ -4,7 +4,9 @@ import { getLoginToken } from "../utils/authToken";
 import { toast } from "react-toastify";
 
 const useHttp = () => {
-  const api = axios.create({ baseURL: "http://localhost:3002" });
+  const apiURL = import.meta.env.VITE_REACT_APP_API_URL;
+
+  const api = axios.create({ baseURL: apiURL });
 
   api.interceptors.request.use((config) => {
     const token = getLoginToken();

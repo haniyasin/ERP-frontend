@@ -9,7 +9,7 @@ import {
   useDepartment
 } from "../../../../hooks/contextHooks";
 import { User } from "../../../../interfaces/User";
-import CustomRadioGroup from "../../../admin/CustomRadioGroup";
+import CustomRadioGroup from "../../../../common/CustomRadioGroup";
 import { createEmployeeSchema } from "../form-schemas/createEmployeeSchema";
 import Form from "../../../../common/Form";
 

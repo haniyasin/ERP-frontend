@@ -1,4 +1,10 @@
-import React, { ReactNode, createContext, useEffect, useState } from "react";
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { useHttp } from "../hooks/useHttp";
 import { User } from "../interfaces/User";
@@ -147,5 +153,9 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+const useUser = useContext(UserContext);
+
+export { useUser };
 
 export default UserProvider;

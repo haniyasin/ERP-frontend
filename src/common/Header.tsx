@@ -45,6 +45,7 @@ const Header = () => {
               {accessibleRoutes
                 .filter(
                   ({ path }) =>
+                    path !== "/" &&
                     path !== "/employee/:employeeId" &&
                     path !== "/position/:positionId" &&
                     path !== "/company/:companyId"

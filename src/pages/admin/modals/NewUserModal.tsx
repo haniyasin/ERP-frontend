@@ -1,19 +1,19 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import InputField from "../../common/InputField";
+import InputField from "../../../common/InputField";
 import "react-toastify/dist/ReactToastify.css";
-import { User } from "../../interfaces/User";
-import SelectField from "../../common/SelectField";
+import { User } from "../../../interfaces/User";
+import SelectField from "../../../common/SelectField";
 import {
   useAuth,
   useDepartment,
   useRole,
   useUser
-} from "../../hooks/contextHooks";
-import { createUserSchema } from "./form-schemas/createUserSchema";
-import Form from "../../common/Form";
-import ModalBox from "../../common/ModalBox";
-import CustomRadioGroup from "./CustomRadioGroup";
+} from "../../../hooks/contextHooks";
+import { createUserSchema } from "../form-schemas/createUserSchema";
+import Form from "../../../common/Form";
+import ModalBox from "../../../common/ModalBox";
+import CustomRadioGroup from "../../../common/CustomRadioGroup";
 
 interface NewUserModalProps {
   closeNewUserModal: () => void;

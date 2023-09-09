@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useState } from "react";
+import React, { ReactNode, createContext, useContext, useState } from "react";
 import { useHttp } from "../hooks/useHttp";
 import { toast } from "react-toastify";
 import { Client } from "../interfaces/Client";
@@ -48,5 +48,9 @@ const ClientProvider = ({ children }: ClientProviderProps) => {
     <ClientContext.Provider value={value}>{children}</ClientContext.Provider>
   );
 };
+
+const useClient = useContext(ClientContext);
+
+export { useClient };
 
 export default ClientProvider;

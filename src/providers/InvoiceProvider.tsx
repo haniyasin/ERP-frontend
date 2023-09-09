@@ -40,11 +40,12 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
   };
 
   const deleteInvoice = async (invoiceNumber: number) => {
-    await del("/invoices/deleteInvoice", invoiceNumber).then((res) => {
+    await del("/invoices", invoiceNumber).then((res) => {
       if (res) {
         toast.success(res?.data);
         getInvoices();
         handleInvoiceModalClose();
+        toast.success("Successfully deleted invoice");
       }
     });
   };

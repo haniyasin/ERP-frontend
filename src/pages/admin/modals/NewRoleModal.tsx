@@ -2,12 +2,12 @@ import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { Role } from "../../interfaces/Role";
-import { useHttp } from "../../hooks/useHttp";
-import { createRoleSchema } from "./form-schemas/createRoleSchema";
-import Form from "../../common/Form";
-import InputField from "../../common/InputField";
-import ModalBox from "../../common/ModalBox";
+import { Role } from "../../../interfaces/Role";
+import { useHttp } from "../../../hooks/useHttp";
+import { createRoleSchema } from "../form-schemas/createRoleSchema";
+import Form from "../../../common/Form";
+import InputField from "../../../common/InputField";
+import ModalBox from "../../../common/ModalBox";
 
 interface NewRoleModalProps {
   closeNewRoleModal: () => void;

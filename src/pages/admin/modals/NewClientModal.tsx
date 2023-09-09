@@ -2,12 +2,12 @@ import React from "react";
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { Client } from "../../interfaces/Client";
-import { useHttp } from "../../hooks/useHttp";
-import Form from "../../common/Form";
-import InputField from "../../common/InputField";
-import ModalBox from "../../common/ModalBox";
-import { createClientSchema } from "./form-schemas/CreateClientSchema";
+import { Client } from "../../../interfaces/Client";
+import { useHttp } from "../../../hooks/useHttp";
+import Form from "../../../common/Form";
+import InputField from "../../../common/InputField";
+import ModalBox from "../../../common/ModalBox";
+import { createClientSchema } from "../form-schemas/CreateClientSchema";
 
 interface NewClientModalProps {
   closeNewClientModal: () => void;

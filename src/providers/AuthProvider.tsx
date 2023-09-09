@@ -5,6 +5,7 @@ import { User } from "../interfaces/User";
 import { useHttp } from "../hooks/useHttp";
 import { getLoginToken, setLoginToken } from "../utils/authToken";
 
+
 export interface UserAuth {
   isAuthenticated: boolean;
   login: (data: User) => void;
@@ -44,9 +45,7 @@ const AuthProvider = ({ children }: UserAuthProviderProps) => {
   const registerAndLogin = (data: User) => {
     post("/auth/register", { ...data, startDate: new Date() }).then((res) => {
       handleLoginResponse(res);
-      toast.success(
-        "You were successfully registered as an Administrator and you will receive your password via email"
-      );
+      toast.success("You were successfully registered as an Administrator.");
     });
   };
 

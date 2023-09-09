@@ -13,7 +13,7 @@ import Form from "../../../../common/Form";
 import ProfilePicture from "../ProfilePicture";
 import InputField from "../../../../common/InputField";
 import SelectField from "../../../../common/SelectField";
-import CustomRadioGroup from "../../../admin/CustomRadioGroup";
+import CustomRadioGroup from "../../../../common/CustomRadioGroup";
 import { Department } from "../../../../interfaces/Department";
 import { useDepartment, useUser } from "../../../../hooks/contextHooks";
 import { extractProfilePicture } from "../../../../utils/extractProfilePicture";

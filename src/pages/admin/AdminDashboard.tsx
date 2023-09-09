@@ -1,10 +1,10 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import NewUserModal from "./NewUserModal";
+import NewUserModal from "./modals/NewUserModal";
 import { ToastContainer } from "react-toastify";
-import NewRoleModal from "./NewRoleModal";
-import NewClientModal from "./NewClientModal";
-import NewDepartmentModal from "./NewDepartmentModal";
+import NewRoleModal from "./modals/NewRoleModal";
+import NewClientModal from "./modals/NewClientModal";
+import NewDepartmentModal from "./modals/NewDepartmentModal";
 import { MainTitle } from "../../styles/styled components/StyledTypographies";
 
 const Admin = () => {
