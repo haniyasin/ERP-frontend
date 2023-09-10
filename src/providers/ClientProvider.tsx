@@ -49,8 +49,8 @@ const ClientProvider = ({ children }: ClientProviderProps) => {
   );
 };
 
-const useClient = useContext(ClientContext);
+// const useClient = useContext(ClientContext);
 
-export { useClient };
+// export { useClient };
 
 export default ClientProvider;

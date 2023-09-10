@@ -10,6 +10,7 @@ import Admin from "../pages/admin/AdminDashboard";
 import EmployeeDashboard from "../pages/hr/employees/EmployeeDashboard";
 import PositionDashboard from "../pages/hr/positions/PositionDashboard";
 import CompanyDashboard from "../pages/bdm/CompanyDashboard";
+import FinancialReport from "../pages/fin/reports/FinancialReport";
 
 export interface IRoute {
   path: string;
@@ -62,6 +63,11 @@ export const protectedRoutes: IRoute[] = [
     path: "/company/:companyId",
     Element: CompanyDashboard,
     allowedRoles: ["ADMIN", "BDM"]
+  },
+  {
+    path: "/invoice-report",
+    Element: FinancialReport,
+    allowedRoles: ["ADMIN", "FIN"]
   },
   {
     path: "/profile",

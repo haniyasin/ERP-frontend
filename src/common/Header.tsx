@@ -46,6 +46,7 @@ const Header = () => {
                 .filter(
                   ({ path }) =>
                     path !== "/" &&
+                    path !== "/invoice-report" &&
                     path !== "/employee/:employeeId" &&
                     path !== "/position/:positionId" &&
                     path !== "/company/:companyId"

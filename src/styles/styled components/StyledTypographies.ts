@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const MainTitle = styled(Typography)`
   && {
-    margin: 20px;
+    margin: 10px;
     text-align: center;
   }
 `;
 
 export const TableTitle = styled(Typography)`
   && {
-    margin: 15px;
+    margin-bottom: 20px;
     text-align: center;
   }
 `;

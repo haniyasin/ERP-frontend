@@ -9,11 +9,14 @@ import {
   MainTitle,
   TableTitle
 } from "../../styles/styled components/StyledTypographies";
+import { useNavigate } from "react-router-dom";
 
 const FIN = () => {
   const [isNewInvoiceModalOpened, setIsNewInvoiceModalOpened] =
     useState<boolean>(false);
   const { clickedInvoice, handleInvoiceModalClose, getInvoices } = useInvoice();
+
+  const navigate = useNavigate();
 
   const openNewInvoiceModal = () => {
     setIsNewInvoiceModalOpened(true);
@@ -32,10 +35,18 @@ const FIN = () => {
       <ToastContainer position="top-center" />
       <MainTitle variant="h4">Invoice Dashboard</MainTitle>
       <TableTitle variant="h5">Invoices</TableTitle>
-      <Box display="flex" justifyContent="center" marginBottom={3}>
+      <Box display="flex" justifyContent="center" marginBottom={3} gap={2}>
         <Button onClick={openNewInvoiceModal} variant="contained">
           New Invoice
         </Button>
+        <Button
+          onClick={() => navigate("/invoice-report")}
+          sx={{ alignSelf: "center" }}
+          variant="contained"
+        >
+          Generate Report
+        </Button>
+
         {isNewInvoiceModalOpened && (
           <NewInvoiceModal
             isNewInvoiceModalOpen={isNewInvoiceModalOpened}
@@ -44,6 +55,7 @@ const FIN = () => {
         )}
       </Box>
       <InvoiceList />
+
       {clickedInvoice !== null && (
         <InvoiceModal
           isOpen={clickedInvoice !== null}

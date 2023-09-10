@@ -56,7 +56,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
   const handleEmployeeDashboardClose = () => {
     setOpenedEmployee(null);
-    navigate("/hr");
+    navigate("/hr/employees");
   };
 
   const getEmployees = async () => {
@@ -154,8 +154,8 @@ const UserProvider = ({ children }: UserProviderProps) => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-const useUser = useContext(UserContext);
+// const useUser = useContext(UserContext);
 
-export { useUser };
+// export { useUser };
 
 export default UserProvider;

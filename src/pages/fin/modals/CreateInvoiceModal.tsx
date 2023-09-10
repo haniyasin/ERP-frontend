@@ -54,7 +54,14 @@ const NewInvoiceModal = ({
             >
               <Stack direction="column" spacing={0} width={"85%"}>
                 <InputField name="invoiceNumber" label="Invoice number" />
-                <InputField name="createdAt" label="Created at" type="date" />
+                <InputField
+                  name="createdAt"
+                  label="Created at"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
                 <SelectField
                   name="paymentType"
                   label="Payment type"
@@ -94,12 +101,21 @@ const NewInvoiceModal = ({
                   type="number"
                 />
                 <InputField name="vat" label="Vat percentage" type="number" />
-                <InputField name="dueDate" label="Due date" type="date" />
+                <InputField
+                  name="dueDate"
+                  label="Due date"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                />
                 <InputField
                   name="paymentMadeOn"
                   label="Payment made on"
                   type="date"
-                  defaultValue={new Date().toISOString().split("T")[0]}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
                 />
                 <SelectField
                   name="paymentMethod"

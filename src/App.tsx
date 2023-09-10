@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 
 function App() {
   return (
-    <Box style={{ marginTop: 100 }}>
+    <Box style={{ marginTop: 95 }}>
       <Header />
       <AppRoutes />
     </Box>
