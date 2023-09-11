@@ -1,5 +1,5 @@
 import Bdm from "../pages/bdm/BdmDashboard";
-import Departments from "../pages/DepartmentDashboard";
+import Home from "../pages/Home";
 import Fin from "../pages/fin/InvoiceDashboard";
 import HrEmployee from "../pages/hr/employees/HrEmployeesDashboard";
 import HrPosition from "../pages/hr/positions/HrPositionsDashboard";
@@ -21,7 +21,7 @@ export interface IRoute {
 export const protectedRoutes: IRoute[] = [
   {
     path: "/",
-    Element: Departments,
+    Element: Home,
     allowedRoles: ["ADMIN", "EMPLOYEE", "HR", "FIN", "BDM"]
   },
   {
