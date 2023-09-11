@@ -10,27 +10,24 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LoadingComponent from "../../../common/LoadingComponent";
-import { useDepartment } from "../../../hooks/contextHooks";
 import { Department } from "../../../interfaces/Department";
 import { extractProfilePicture } from "../../../utils/extractProfilePicture";
 import { formatDateToLocaleTime } from "../../../utils/formatDataToLocaleTime";
-import ProfilePicture from "../../hr/employees/ProfilePicture";
 import { User } from "../../../interfaces/User";
+import ProfilePicture from "../../hr/employees/ProfilePicture";
 
 interface BasicInfoAccordionProps {
-  employee: User;
+  user: User;
 }
 
-const BasicInfoAccordion = ({ employee }: BasicInfoAccordionProps) => {
-  const { departments } = useDepartment();
+const BasicInfoAccordion = ({ user }: BasicInfoAccordionProps) => {
+  if (!user || user === null) return <LoadingComponent />;
 
-  if (!employee || employee === null) return <LoadingComponent />;
+  //   const joinedDepartmentIds = user?.departments?.map(
+  //     (department: Department) => department.id
+  //   );
 
-  const joinedDepartmentIds = employee?.departments?.map(
-    (department: Department) => department.id
-  );
-
-  const imageUrl = extractProfilePicture(employee?.picture?.data);
+  const imageUrl = extractProfilePicture(user?.picture?.data);
 
   return (
     <Accordion elevation={0} defaultExpanded={false}>
@@ -69,20 +66,20 @@ const BasicInfoAccordion = ({ employee }: BasicInfoAccordionProps) => {
               <TextField
                 name="fullName"
                 label="Full Name"
-                defaultValue={employee.fullName}
+                defaultValue={user.fullName}
                 disabled
               />
               <TextField
                 name="email"
                 label="Email"
-                defaultValue={employee.email}
+                defaultValue={user.email}
                 disabled
               />
               <TextField
                 name="startingDate"
                 label="Starting Date"
                 type="date"
-                defaultValue={formatDateToLocaleTime(employee.startDate)}
+                defaultValue={formatDateToLocaleTime(user.startDate)}
                 disabled
               />
             </Stack>
@@ -98,16 +95,16 @@ const BasicInfoAccordion = ({ employee }: BasicInfoAccordionProps) => {
               <TextField
                 name="title"
                 label="Title"
-                defaultValue={employee.title}
+                defaultValue={user.title}
                 disabled
               />
               <TextField
                 name="isContractor"
-                label="Is Employee a Contractor?"
+                label="Is User a Contractor?"
                 value={
-                  employee.isContractor
-                    ? "Employee is a contractor"
-                    : "Employee is not a contractor"
+                  user.isContractor
+                    ? "User is a contractor"
+                    : "User is not a contractor"
                 }
                 disabled
               />
