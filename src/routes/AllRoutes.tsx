@@ -4,7 +4,7 @@ import Fin from "../pages/fin/InvoiceDashboard";
 import HrEmployee from "../pages/hr/employees/HrEmployeesDashboard";
 import HrPosition from "../pages/hr/positions/HrPositionsDashboard";
 import NotFound from "../pages/NotFound";
-import Profile from "../pages/Profile";
+import Profile from "../pages/profile/Profile";
 import Unauthorized from "../pages/Unauthorized";
 import Admin from "../pages/admin/AdminDashboard";
 import EmployeeDashboard from "../pages/hr/employees/EmployeeDashboard";

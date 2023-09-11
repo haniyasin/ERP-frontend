@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 import StyledProfilePicture from "../../../styles/styled components/StyledProfilePicture";
 
 interface ProfilePictureProps {
-  isHovered: boolean;
+  isHovered?: boolean;
   imageUrl: string;
-  onHover: () => void;
-  onClick: () => void;
+  onHover?: () => void;
+  onClick?: () => void;
 }
 
 const ProfilePicture = ({
