@@ -8,6 +8,7 @@ import { Invoice } from "../../../interfaces/Invoice";
 import { createInvoiceSchema } from "../form-schemas/createInvoiceSchema";
 import SelectField from "../../../common/SelectField";
 import {
+  invoiceCategories,
   invoiceCurrencies,
   invoicePaymentTypes
 } from "../../../utils/constants";
@@ -68,7 +69,12 @@ const NewInvoiceModal = ({
                   arrayData={invoicePaymentTypes}
                   defaultValue="Payable"
                 />
-                <InputField name="category" label="Category" />
+                <SelectField
+                  name="category"
+                  label="Category"
+                  arrayData={invoiceCategories}
+                  defaultValue="Services"
+                />
                 <SelectField
                   name="client"
                   label="Client"

@@ -43,7 +43,7 @@ const PositionProvider = ({ children }: PositionProviderProps) => {
 
   const handlePositionDashboardClose = () => {
     setClickedPosition(null);
-    navigate("/hr");
+    navigate("/hr/positions");
   };
 
   const getPositions = () => {

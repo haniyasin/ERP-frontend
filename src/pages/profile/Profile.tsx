@@ -36,6 +36,10 @@ const Profile = () => {
           ></Stack>
           <BasicInfoAccordion user={user} />
           <ProjectsAccordion user={user} />
+          {/* <SalaryAccordion user={user} /> */}
+          {/* <BonusesAccordion user={user} /> */}
+          {/* <LeavesAccordion user={user} /> */}
+          {/* <RelatedDocumentsAccordion user={user} /> */}
         </Grid>
       </Grid>
     </Container>

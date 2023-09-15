@@ -7,3 +7,11 @@ export const PASSWORD_REGEX =
 export const invoiceCurrencies = ["BGN", "USD", "EUR"];
 
 export const invoicePaymentTypes = ["Payable", "Receivable"];
+
+export const invoiceCategories = [
+  "Utilities",
+  "Software",
+  "Hardware",
+  "Services",
+  "Other"
+];

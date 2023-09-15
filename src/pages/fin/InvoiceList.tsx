@@ -172,12 +172,6 @@ const InvoiceList = () => {
             shrink: true
           }}
         />
-        {/* <Button
-          variant="contained"
-          onClick={() => applyFilters(startDate, endDate)}
-        >
-          Apply Filters
-        </Button> */}
         <Button variant="contained" onClick={clearFilters}>
           Clear Filters
         </Button>
