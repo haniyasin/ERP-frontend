@@ -29,7 +29,6 @@ const InvoiceList = () => {
     handleInvoiceModalOpen,
     invoices,
     clearFilters,
-    filters,
     handleChangeFilters,
     applyFilters
   } = useInvoice();

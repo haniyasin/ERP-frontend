@@ -6,6 +6,10 @@ import LoadingComponent from "../../common/LoadingComponent";
 import { ToastContainer } from "react-toastify";
 import BasicInfoAccordion from "./accordions/BasicInfoAccordion";
 import ProjectsAccordion from "./accordions/ProjectsAccordion";
+import SalaryAccordion from "./accordions/SalaryAccordion";
+import BonusesAccordion from "./accordions/BonusesAccordion";
+import LeavesAccordion from "./accordions/LeavesAccordion";
+import RelatedDocumentsAccordion from "./accordions/RelatedDocumentsAccordion";
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -36,10 +40,10 @@ const Profile = () => {
           ></Stack>
           <BasicInfoAccordion user={user} />
           <ProjectsAccordion user={user} />
-          {/* <SalaryAccordion user={user} /> */}
-          {/* <BonusesAccordion user={user} /> */}
-          {/* <LeavesAccordion user={user} /> */}
-          {/* <RelatedDocumentsAccordion user={user} /> */}
+          <SalaryAccordion user={user} />
+          <BonusesAccordion user={user} />
+          <LeavesAccordion user={user} />
+          <RelatedDocumentsAccordion user={user} />
         </Grid>
       </Grid>
     </Container>
