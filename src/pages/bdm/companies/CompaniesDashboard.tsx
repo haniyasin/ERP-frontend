@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
-import { useCompany } from "../../hooks/contextHooks";
+import { Box, Button, Container } from "@mui/material";
+import { useCompany } from "../../../hooks/contextHooks";
 import CompanyList from "./CompaniesList";
 import { ToastContainer } from "react-toastify";
 import NewCompanyModal from "./modals/NewCompanyModal";
 import {
   MainTitle,
   TableTitle
-} from "../../styles/styled components/StyledTypographies";
+} from "../../../styles/styled components/StyledTypographies";
 
-const BDM = () => {
+const BdmCompanies = () => {
   const [isNewCompanyModalOpen, setIsNewCompanyModalOpen] =
     useState<boolean>(false);
   const { getCompanies } = useCompany();
@@ -17,6 +17,7 @@ const BDM = () => {
   useEffect(() => {
     getCompanies();
   }, []);
+  
   return (
     <Container>
       <ToastContainer position="top-center" />
@@ -41,4 +42,4 @@ const BDM = () => {
   );
 };
 
-export default BDM;
+export default BdmCompanies;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Container } from "@mui/material";
 import EmployeeList from "./EmployeeList";
-import { usePosition, useUser } from "../../../hooks/contextHooks";
+import { useUser } from "../../../hooks/contextHooks";
 import { ToastContainer } from "react-toastify";
 import NewEmployeeModal from "./modals/NewEmployeeModal";
 import {
@@ -13,11 +13,9 @@ const HrEmployee = () => {
   const [isNewEmployeeModalOpen, setIsNewEmployeeModalOpen] =
     useState<boolean>(false);
   const { getEmployees } = useUser();
-  const { getPositions } = usePosition();
 
   useEffect(() => {
     getEmployees();
-    getPositions();
   }, []); // eslint-disable-line
 
   return (

@@ -3,6 +3,7 @@ import React from "react";
 import { MainTitle } from "../styles/styled components/StyledTypographies";
 import styled from "styled-components";
 import companyLogo from "../assets/logo.png";
+import { ToastContainer } from "react-toastify";
 
 const StyledContainer = styled(Container)`
   display: flex;
@@ -37,8 +38,9 @@ const CompanyLogoImg = styled.img`
 const Home = () => {
   return (
     <StyledContainer>
+      <ToastContainer position="top-center" />
       <MainTitle variant="h4" textAlign="center">
-        Welcome to Deafor's ERP System
+        Welcome to Deafor`s ERP System
       </MainTitle>
       <CenteredContent>
         <CompanyLogoImg src={companyLogo} alt="Company Logo" />

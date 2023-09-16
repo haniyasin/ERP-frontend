@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useCompany } from "../../../hooks/contextHooks";
-import { Company } from "../../../interfaces/Company";
+import { useCompany } from "../../../../hooks/contextHooks";
+import { Company } from "../../../../interfaces/Company";
 import {
   Accordion,
   AccordionDetails,
@@ -11,9 +11,9 @@ import {
   Typography
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LoadingComponent from "../../../common/LoadingComponent";
-import InputField from "../../../common/InputField";
-import Form from "../../../common/Form";
+import LoadingComponent from "../../../../common/LoadingComponent";
+import InputField from "../../../../common/InputField";
+import Form from "../../../../common/Form";
 import { createCompanySchema } from "../form-schemas/createCompanySchema";
 
 const BasicInfoAccordion = () => {

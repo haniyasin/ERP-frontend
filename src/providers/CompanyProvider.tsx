@@ -40,7 +40,7 @@ const CompanyProvider = ({ children }: CompanyProviderProps) => {
 
   const handleCompanyDashboardClose = () => {
     setClickedCompany(null);
-    navigate("/bdm");
+    navigate("/bdm/companies");
   };
 
   const deleteCompany = async (id: number) => {

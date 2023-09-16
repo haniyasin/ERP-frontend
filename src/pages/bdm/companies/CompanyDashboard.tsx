@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Grid, Stack, Typography } from "@mui/material";
-import { useCompany } from "../../hooks/contextHooks";
+import { useCompany } from "../../../hooks/contextHooks";
 import BasicInfoAccordion from "./accordions/BasicInfoAccordion";
 import { ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
-import LoadingComponent from "../../common/LoadingComponent";
-import { handleNotFound } from "../../routes/ErrorHandler";
+import LoadingComponent from "../../../common/LoadingComponent";
+import { handleNotFound } from "../../../routes/ErrorHandler";
 import DeleteCompanyModal from "./modals/DeleteCompanyModal";
-import VacantPositionsAccordion from "./accordions/vacant-positions/VacantPositionsAccordion";
+import VacantPositionsAccordion from "./accordions/VacantPositionsAccordion";
 
 const CompanyDashboard = () => {
   const [companyExists, setCompanyExists] = useState<boolean>(true);

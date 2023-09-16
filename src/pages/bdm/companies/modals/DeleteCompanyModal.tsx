@@ -1,9 +1,9 @@
 import React from "react";
-import ModalBox from "../../../common/ModalBox";
-import { useHttp } from "../../../hooks/useHttp";
+import ModalBox from "../../../../common/ModalBox";
+import { useHttp } from "../../../../hooks/useHttp";
 import { toast } from "react-toastify";
 import { Button, Stack, Typography } from "@mui/material";
-import { useCompany } from "../../../hooks/contextHooks";
+import { useCompany } from "../../../../hooks/contextHooks";
 
 interface DeleteCompanyModalProps {
   isOpen: boolean;

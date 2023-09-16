@@ -4,12 +4,6 @@ import { useHttp } from "../hooks/useHttp";
 import { Project } from "../interfaces/Project";
 import { toast } from "react-toastify";
 
-interface DeleteInformationProps {
-  email: string;
-  reason: string;
-  document: Buffer | null;
-}
-
 export type ProjectContextType = {
   isLoading: boolean;
   openedProject: Project | null;
@@ -17,12 +11,10 @@ export type ProjectContextType = {
   handleProjectDashboardClose: () => void;
   projects: Project[];
   getProjects: () => void;
-  getProjectById: (id: number) => Promise<Project>;
-  deleteProject: (
-    deleteInformation: DeleteInformationProps
-  ) => Promise<Project | null>;
+  getProjectById: (id: number) => Promise<void>;
+  createProject: (data: Project) => Promise<boolean>;
+  deleteProject: (deleteInformation: string) => Promise<Project | null>;
   editProject: (project: Project) => Promise<Project | null>;
-  changeProjectPicture: (data: Buffer) => Promise<Project | null>;
 };
 
 interface ProjectProviderProps {
@@ -38,45 +30,50 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
   const [openedProject, setOpenedProject] = useState<Project | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const { get, put } = useHttp();
+  const { post, get, put, del } = useHttp();
   const navigate = useNavigate();
 
   const handleProjectDashboardOpen = (project: Project) => {
     setOpenedProject(project);
-    navigate(`/project-dashboard/${project.id}`);
+    navigate(`/project/${project.id}`);
   };
 
   const handleProjectDashboardClose = () => {
     setOpenedProject(null);
-    navigate("/hr");
+    navigate("/bdm/projects");
   };
 
   const getProjects = async () => {
     get("/projects").then((res) => {
       if (res) {
-        const projectsList = res.data.sort(
-          (a: Project, b: Project) => a.id - b.id
-        );
-        setProjects(projectsList);
+        setProjects(res.data);
         setIsLoading(false);
       }
     });
   };
 
   const getProjectById = async (id: number) => {
-    return await get(`projects/projectById/${id}`).then((res) => {
-      if (res.data !== "") setOpenedProject(res.data);
-      return res;
+    await get(`projects/${id}`).then((res) => {
+      if (res) setOpenedProject(res.data);
     });
   };
 
-  const deleteProject = async (deleteInformation: DeleteInformationProps) => {
+  const createProject = async (data: Project): Promise<boolean> => {
+    return post("/projects", data).then((res) => {
+      if (res) {
+        getProjects();
+        handleProjectDashboardClose();
+        toast.success("Successfully created project");
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+
+  const deleteProject = async (id: string) => {
     if (!openedProject) return null;
-    return await put(
-      "/projects",
-      deleteInformation,
-      "multipart/form-data"
-    ).then((res) => {
+    return await del(`/projects/${id}`).then((res) => {
       if (res) {
         handleProjectDashboardClose();
         return res;
@@ -85,23 +82,12 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
   };
 
   const editProject = async (inputData: Project) => {
+    console.log("editing project");
     if (!openedProject) return null;
-    return await put(`projects/${openedProject.id}`, inputData).then((res) => {
-      if (res) {
-        getProjects();
-        toast.success("Successfully edited Project!");
-        return res;
-      }
-    });
-  };
-
-  const changeProjectPicture = async (data: any) => {
-    if (!openedProject) return null;
-    return await put(
-      `projects/picture/${openedProject.id}`,
-      data,
-      "multipart/form-data"
-    ).then((res) => {
+    return await put(`projects/${openedProject.id}`, {
+      ...inputData,
+      id: inputData?.company?.id
+    }).then((res) => {
       if (res) {
         getProjects();
         toast.success("Successfully edited Project!");
@@ -118,9 +104,9 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
     projects,
     getProjects,
     getProjectById,
+    createProject,
     deleteProject,
-    editProject,
-    changeProjectPicture
+    editProject
   };
 
   return (

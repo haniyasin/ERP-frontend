@@ -7,11 +7,11 @@ import {
   TableRow
 } from "@mui/material";
 import React, { useCallback } from "react";
-import { useCompany } from "../../hooks/contextHooks";
-import { Company } from "../../interfaces/Company";
-import { formatHeaders } from "../../utils/formatHeaders";
-import { CenteredTableCell } from "../../styles/styled components/CenteredTableCell";
-import { theme } from "../../styles/Theme";
+import { useCompany } from "../../../hooks/contextHooks";
+import { Company } from "../../../interfaces/Company";
+import { formatHeaders } from "../../../utils/formatHeaders";
+import { CenteredTableCell } from "../../../styles/styled components/CenteredTableCell";
+import { theme } from "../../../styles/Theme";
 
 const CompanyList = () => {
   const { companies, handleCompanyDashboardOpen } = useCompany();
@@ -29,18 +29,21 @@ const CompanyList = () => {
     });
   }, [companies]);
 
-  const getTableCells = useCallback((company: Company) => {
-    return Object.entries(company).map(([key, value], index) => {
-      if (key === "positions") return null;
-      if (key === "projects" || key === "positions")
-        return (
-          <CenteredTableCell key={index}>{value.length}</CenteredTableCell>
-        );
+  const getTableCells = useCallback(
+    (company: Company) => {
+      return Object.entries(company).map(([key, value], index) => {
+        if (key === "positions") return null;
+        if (key === "projects" || key === "positions")
+          return (
+            <CenteredTableCell key={index}>{value.length}</CenteredTableCell>
+          );
 
-      if (key !== "id" && key !== "deletedAt")
-        return <CenteredTableCell key={index}>{value}</CenteredTableCell>;
-    });
-  }, []);
+        if (key !== "id" && key !== "deletedAt")
+          return <CenteredTableCell key={index}>{value}</CenteredTableCell>;
+      });
+    },
+    [companies]
+  );
 
   return (
     <TableContainer
