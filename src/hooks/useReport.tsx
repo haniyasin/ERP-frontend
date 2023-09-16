@@ -9,7 +9,7 @@ const useReport = () => {
   const [totalRevenue, setTotalRevenue] = useState<number>(0);
   const [totalExpenses, setTotalExpenses] = useState<number>(0);
 
-  const { filteredInvoices, filters } = useInvoice();
+  const { invoices, filters } = useInvoice();
 
   useEffect(() => {
     setEarliestCreateDate(null);
@@ -20,7 +20,7 @@ const useReport = () => {
     let defaultEarliestCreateDate = new Date();
     let defaultLatestCreateDate = new Date();
 
-    for (const invoice of filteredInvoices) {
+    for (const invoice of invoices) {
       const createDate = new Date(invoice.createdAt);
 
       if (createDate < defaultEarliestCreateDate)
@@ -38,11 +38,11 @@ const useReport = () => {
 
     setEarliestCreateDate(defaultEarliestCreateDate);
     setLatestCreateDate(defaultLatestCreateDate);
-  }, [filteredInvoices]);
+  }, [invoices]);
 
   return {
-    startDate: filters?.startDate || earliestCreateDate,
-    endDate: filters?.endDate || latestCreateDate,
+    startDate: !filters?.startDate ? earliestCreateDate : filters?.startDate,
+    endDate: !filters?.endDate ? latestCreateDate : filters?.endDate,
     totalRevenue,
     totalExpenses,
     totalProfit: totalRevenue - totalExpenses

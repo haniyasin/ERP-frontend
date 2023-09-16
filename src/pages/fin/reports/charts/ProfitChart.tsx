@@ -14,9 +14,9 @@ import { useInvoice } from "../../../../hooks/contextHooks";
 import { Invoice } from "../../../../interfaces/Invoice";
 
 const ProfitChart = () => {
-  const { filteredInvoices } = useInvoice();
+  const { invoices } = useInvoice();
 
-  const chartData = filteredInvoices
+  const chartData = invoices
     .map((invoice: Invoice) => {
       return {
         date: invoice.createdAt,

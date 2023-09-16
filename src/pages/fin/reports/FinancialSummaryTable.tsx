@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TableContainer,
   Paper,
@@ -10,10 +10,17 @@ import {
 import { theme } from "../../../styles/Theme";
 import { CenteredTableCell } from "../../../styles/styled components/CenteredTableCell";
 import { useReport } from "../../../hooks/useReport";
+import { useInvoice } from "../../../hooks/contextHooks";
 
 const FinancialSummaryTable = () => {
   const { startDate, endDate, totalRevenue, totalExpenses, totalProfit } =
     useReport();
+
+  const { applyFilters } = useInvoice();
+
+  useEffect(() => {
+    applyFilters(startDate, endDate);
+  }, []);
 
   return (
     <TableContainer
@@ -24,7 +31,6 @@ const FinancialSummaryTable = () => {
         <TableHead>
           <TableRow
             style={{
-              cursor: "pointer",
               backgroundColor: theme.palette.primary.light
             }}
           >
@@ -36,7 +42,7 @@ const FinancialSummaryTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow hover style={{ cursor: "pointer" }}>
+          <TableRow>
             <CenteredTableCell>
               {startDate?.toLocaleDateString() || ""}
             </CenteredTableCell>

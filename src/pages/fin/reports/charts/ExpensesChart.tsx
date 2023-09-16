@@ -14,9 +14,9 @@ import { useInvoice } from "../../../../hooks/contextHooks";
 import { Invoice } from "../../../../interfaces/Invoice";
 
 const ExpensesChart = () => {
-  const { filteredInvoices } = useInvoice();
+  const { invoices } = useInvoice();
 
-  const expenseInvoices = filteredInvoices.filter(
+  const expenseInvoices = invoices.filter(
     (invoice: Invoice) => invoice.paymentType === "Payable"
   );
 

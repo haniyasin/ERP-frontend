@@ -16,6 +16,8 @@ const AppRoutes = () => {
 
   if (userExists === null) return <LoadingComponent />;
 
+  // implement loader https://reactrouter.com/en/main/route/loader
+
   return (
     <Routes>
       <Route path="/*" element={handleNotFound()} />

@@ -5,49 +5,59 @@ import {
   MainTitle,
   TableTitle
 } from "../../../styles/styled components/StyledTypographies";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { usePDF } from "react-to-pdf";
 import { useHttp } from "../../../hooks/useHttp";
-import { useInvoice } from "../../../hooks/contextHooks";
 import ProfitChart from "./charts/ProfitChart";
 import ExpensesChart from "./charts/ExpensesChart";
 import RevenueChart from "./charts/RevenueChart";
 import { useReport } from "../../../hooks/useReport";
+import { useInvoice } from "../../../hooks/contextHooks";
 
 const FinancialReport = () => {
-  const { filters, handleChangeFilters, applyFilters, getInvoices } =
-    useInvoice();
   const { post } = useHttp();
   const { startDate, endDate } = useReport();
+  const { applyFilters } = useInvoice();
 
-  useEffect(() => {
-    getInvoices();
-    if (filters?.startDate === null || filters?.endDate === null)
-      handleChangeFilters({ startDate, endDate });
-  }, []);
-
-  useEffect(() => {
-    if (filters?.startDate || filters?.endDate)
-      applyFilters({ startDate, endDate });
-  }, [filters]);
+  const formattedStartDate =
+    startDate instanceof Date ? startDate.toLocaleDateString("en-GB") : "";
+  const formattedEndDate =
+    endDate instanceof Date ? endDate.toLocaleDateString("en-GB") : "";
 
   const handleDownloadPDF = async () => {
     const pdfContent = targetRef.current;
     const pdfBlob = new Blob([pdfContent], { type: "application/pdf" });
 
-    const file = new File([pdfBlob], "financial_report.pdf", {
-      type: "application/pdf"
-    });
+    const file = new File(
+      [pdfBlob],
+      `Report: ${formattedStartDate}-${formattedEndDate}.pdf`,
+      {
+        type: "application/pdf"
+      }
+    );
 
     const formData = new FormData();
     formData.append("document", file);
-    formData.append("name", "new_report_toPDF");
+    formData.append(
+      "name",
+      `Report: ${formattedStartDate}-${formattedEndDate}.pdf`
+    );
 
-    post("reports", formData);
+    post("reports", formData).then((res) => {
+      if (res) toast.success("Report saved successfully");
+    });
     toPDF();
   };
 
-  const { toPDF, targetRef } = usePDF({ filename: "toPDF_report.pdf" });
+  const { toPDF, targetRef } = usePDF({
+    filename: `Report: ${formattedStartDate}-${formattedEndDate}.pdf`
+  });
+
+  useEffect(() => {
+    if (startDate !== "" && endDate !== "") {
+      applyFilters(startDate, endDate);
+    }
+  }, [startDate, endDate]);
 
   return (
     <Box>
@@ -70,7 +80,7 @@ const FinancialReport = () => {
       </Box>
       <Box display="flex" justifyContent="center" margin={4}>
         <Button variant="contained" onClick={handleDownloadPDF}>
-          Download as PDF
+          Save & Download as PDF
         </Button>
       </Box>
     </Box>

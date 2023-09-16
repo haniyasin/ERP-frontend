@@ -9,13 +9,11 @@ export interface Reports {
 }
 
 export type InvoiceContextType = {
-  //   invoiceExist: boolean | null;
   isLoading: boolean;
   clickedInvoice: Invoice | null;
   handleInvoiceModalOpen: (invoice: Invoice) => void;
   handleInvoiceModalClose: () => void;
   invoices: Invoice[];
-  filteredInvoices: Invoice[];
   getInvoices: () => void;
   createInvoice: (invoice: Invoice) => Promise<boolean>;
   deleteInvoice: (invoiceNumber: number) => Promise<void>;
@@ -24,8 +22,9 @@ export type InvoiceContextType = {
   applyFilters: (startDate: Date, endDate: Date) => void;
   handleChangeFilters: (filters: Filters) => void;
   clearFilters: () => void;
-  filters: Filters;
+  filters: Filters | null;
 };
+
 interface InvoiceProviderProps {
   children: ReactNode;
 }
@@ -42,14 +41,33 @@ export const InvoiceContext = createContext<InvoiceContextType>(
 const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [clickedInvoice, setClickedInvoice] = useState<Invoice | null>(null);
+  const [allInvoices, setAllInvoices] = useState<Invoice[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
-  const [filteredInvoices, setFilteredInvoices] = useState<Invoice[]>([]);
-  const [filters, setFilters] = useState<Filters>({
-    startDate: null,
-    endDate: null
-  });
+  const [filters, setFilters] = useState<Filters | null>(null);
 
   const { get, del, post, put } = useHttp();
+
+  useEffect(() => {
+    if (invoices.length === 0) {
+      getInvoices();
+    }
+    if (!filters) {
+      const filtersFromStorage = localStorage.getItem("filters");
+      if (filtersFromStorage) {
+        const parsedFilters = JSON.parse(filtersFromStorage);
+        const newFilters = {
+          startDate: new Date(parsedFilters.startDate),
+          endDate: new Date(parsedFilters.endDate)
+        };
+        setFilters(newFilters);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (filters?.startDate && filters?.endDate)
+      applyFilters(filters?.startDate, filters?.endDate);
+  }, [filters]);
 
   const handleInvoiceModalOpen = (invoice: Invoice) => {
     setClickedInvoice(invoice);
@@ -69,12 +87,13 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
       }
     });
   };
+
   const getInvoices = () => {
     get("/invoices").then((res) => {
       if (res) {
         setInvoices(res.data.data);
+        setAllInvoices(res.data.data);
         setIsLoading(false);
-        setFilteredInvoices(res.data.data);
       }
     });
   };
@@ -116,53 +135,16 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
     });
   };
 
-  // const filtersFromLocalStorage = JSON.parse(
-  //   localStorage.getItem("filters") as string
-  // );
-
-  // console.log(filtersFromLocalStorage, "localStorage");
-  // console.log(filters, "filters");
-  // console.log(filteredInvoices, "filteredInvoices");
-  // console.log(invoices, "invoices");
-
-  useEffect(() => {
-    if (filters?.startDate && filters?.endDate)
-      applyFilters(filters?.startDate, filters?.endDate);
-    if (filters === null) {
-      const filtersFromLocalStorage = JSON.parse(
-        localStorage.getItem("filters") as string
-      );
-      if (localStorage.getItem("filters") !== null) {
-        setFilters({
-          startDate: new Date(filtersFromLocalStorage?.startDate),
-          endDate: new Date(filtersFromLocalStorage?.endDate)
-        });
-        applyFilters(
-          new Date(filtersFromLocalStorage?.startDate),
-          new Date(filtersFromLocalStorage?.startDate)
-        );
-      }
-    }
-  }, [filters]);
-
-  const applyFilters = (startDate: Date, endDate: Date) => {
-    if (!startDate || !endDate) {
-      setFilteredInvoices(invoices);
-      return;
-    }
-
-    // console.log(startDate, "startDate");
-    // console.log(endDate, "endDate");
-
+  const applyFilters = async (startDate: Date, endDate: Date) => {
     const parsedStartDate = new Date(startDate);
     const parsedEndDate = new Date(endDate);
 
-    const filtered = invoices.filter((invoice) => {
+    const filtered = allInvoices.filter((invoice) => {
       const invoiceDate = new Date(invoice.createdAt);
       return invoiceDate >= parsedStartDate && invoiceDate <= parsedEndDate;
     });
 
-    setFilteredInvoices(filtered);
+    setInvoices(filtered);
   };
 
   const handleChangeFilters = (newFilters: Filters) => {
@@ -176,12 +158,9 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
   };
 
   const clearFilters = () => {
-    setFilteredInvoices(invoices);
+    getInvoices();
     localStorage.removeItem("filters");
-    setFilters({
-      startDate: null,
-      endDate: null
-    });
+    setFilters(null);
   };
 
   const value = {
@@ -190,7 +169,6 @@ const InvoiceProvider = ({ children }: InvoiceProviderProps) => {
     handleInvoiceModalOpen,
     handleInvoiceModalClose,
     invoices,
-    filteredInvoices,
     getInvoices,
     deleteInvoice,
     createInvoice,

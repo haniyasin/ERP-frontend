@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useInvoice } from "../../hooks/contextHooks";
 import {
   Box,
@@ -17,16 +17,21 @@ import { useTable, useSortBy } from "react-table";
 import {
   KeyboardArrowDown,
   KeyboardArrowUp,
-  UnfoldMore
+  UnfoldMore,
+  Clear
 } from "@mui/icons-material";
 
 const InvoiceList = () => {
+  const [startDate, setStartDate] = useState<Date | string>("");
+  const [endDate, setEndDate] = useState<Date | string>("");
+
   const {
     handleInvoiceModalOpen,
-    filteredInvoices,
+    invoices,
     clearFilters,
     filters,
-    handleChangeFilters
+    handleChangeFilters,
+    applyFilters
   } = useInvoice();
 
   const columns = useMemo(
@@ -63,10 +68,20 @@ const InvoiceList = () => {
     useTable(
       {
         columns,
-        data: filteredInvoices
+        data: invoices
       },
       useSortBy
     );
+
+  useEffect(() => {
+    if (startDate !== "" && endDate !== "") {
+      handleChangeFilters({
+        startDate: new Date(startDate),
+        endDate: new Date(endDate)
+      });
+      applyFilters(new Date(startDate), new Date(endDate));
+    }
+  }, [startDate, endDate]);
 
   return (
     <Box>
@@ -152,10 +167,8 @@ const InvoiceList = () => {
           label="Start Date"
           type="date"
           size="small"
-          value={filters?.startDate?.toISOString().split("T")[0] || ""}
-          onChange={(e) =>
-            handleChangeFilters({ startDate: new Date(e.target.value) })
-          }
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
           InputLabelProps={{
             shrink: true
           }}
@@ -164,16 +177,14 @@ const InvoiceList = () => {
           label="End Date"
           type="date"
           size="small"
-          value={filters?.endDate?.toISOString().split("T")[0] || ""}
-          onChange={(e) =>
-            handleChangeFilters({ endDate: new Date(e.target.value) })
-          }
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
           InputLabelProps={{
             shrink: true
           }}
         />
         <Button variant="contained" onClick={clearFilters}>
-          Clear Filters
+          <Clear />
         </Button>
       </Box>
     </Box>

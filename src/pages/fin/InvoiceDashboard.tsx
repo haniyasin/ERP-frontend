@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 const FIN = () => {
   const [isNewInvoiceModalOpened, setIsNewInvoiceModalOpened] =
     useState<boolean>(false);
-  const { clickedInvoice, handleInvoiceModalClose, getInvoices } = useInvoice();
+  const { clickedInvoice, handleInvoiceModalClose, clearFilters } =
+    useInvoice();
 
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const FIN = () => {
   };
 
   useEffect(() => {
-    getInvoices();
+    clearFilters();
   }, []); // eslint-disable-line
 
   return (
