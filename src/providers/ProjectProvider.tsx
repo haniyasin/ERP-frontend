@@ -82,7 +82,6 @@ const ProjectProvider = ({ children }: ProjectProviderProps) => {
   };
 
   const editProject = async (inputData: Project) => {
-    console.log("editing project");
     if (!openedProject) return null;
     return await put(`projects/${openedProject.id}`, {
       ...inputData,
