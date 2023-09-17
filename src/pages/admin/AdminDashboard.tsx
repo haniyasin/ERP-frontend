@@ -1,4 +1,4 @@
-import { Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Container, Stack } from "@mui/material";
 import React, { useState } from "react";
 import NewUserModal from "./modals/NewUserModal";
 import { ToastContainer } from "react-toastify";

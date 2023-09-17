@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Container } from "@mui/material";
 import { useInvoice } from "../../hooks/contextHooks";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import InvoiceList from "./InvoiceList";
 import InvoiceModal from "./modals/InvoiceModal";
 import NewInvoiceModal from "./modals/CreateInvoiceModal";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const FIN = () => {
   const [isNewInvoiceModalOpened, setIsNewInvoiceModalOpened] =
     useState<boolean>(false);
-  const { clickedInvoice, handleInvoiceModalClose, clearFilters } =
+  const { filters, clickedInvoice, handleInvoiceModalClose, clearFilters } =
     useInvoice();
 
   const navigate = useNavigate();
@@ -31,6 +31,11 @@ const FIN = () => {
     clearFilters();
   }, []); // eslint-disable-line
 
+  const handleGenerateReport = () => {
+    if (filters) navigate("/invoice-report");
+    else toast.error("Please select dates for report");
+  };
+
   return (
     <Container>
       <ToastContainer position="top-center" />
@@ -41,7 +46,7 @@ const FIN = () => {
           New Invoice
         </Button>
         <Button
-          onClick={() => navigate("/invoice-report")}
+          onClick={handleGenerateReport}
           sx={{ alignSelf: "center" }}
           variant="contained"
         >

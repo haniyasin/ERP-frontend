@@ -23,7 +23,7 @@ const CandidateProvider = ({ children }: CandidateProviderProps) => {
   const [clickedCandidate, setClickedCandidate] = useState<Candidate | null>(
     null
   );
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  // const [candidates, setCandidates] = useState<Candidate[]>([]);
 
   const { get, post, put } = useHttp();
 
@@ -38,10 +38,10 @@ const CandidateProvider = ({ children }: CandidateProviderProps) => {
   const getCandidates = () => {
     get("/positions").then((res) => {
       if (res) {
-        const candidatesList = res.data.sort(
-          (a: Candidate, b: Candidate) => a.id - b.id
-        );
-        setCandidates(candidatesList);
+        // const candidatesList = res.data.sort(
+        //   (a: Candidate, b: Candidate) => a.id - b.id
+        // );
+        // setCandidates(candidatesList);
       }
     });
   };

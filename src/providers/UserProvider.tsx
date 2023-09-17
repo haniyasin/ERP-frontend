@@ -1,10 +1,4 @@
-import React, {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import React, { ReactNode, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHttp } from "../hooks/useHttp";
 import { User } from "../interfaces/User";

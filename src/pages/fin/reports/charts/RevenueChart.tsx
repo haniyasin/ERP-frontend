@@ -27,7 +27,12 @@ const RevenueChart = () => {
         revenue: invoice.amountWithVat
       };
     })
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    .sort(
+      (
+        a: { date: string | number | Date },
+        b: { date: string | number | Date }
+      ) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
 
   return (
     <Box style={{ display: "flex", justifyContent: "center" }}>

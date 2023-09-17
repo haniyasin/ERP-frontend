@@ -9,8 +9,12 @@ import { RouteButton } from "../RouteButton";
 import { useAuth } from "../../hooks/contextHooks";
 
 const AuthenticatedButtons = () => {
-  const [hrMenuAnchorEl, setHrMenuAnchorEl] = useState(null);
-  const [bdmMenuAnchorEl, setBdmMenuAnchorEl] = useState(null);
+  const [hrMenuAnchorEl, setHrMenuAnchorEl] = useState<HTMLElement | null>(
+    null
+  );
+  const [bdmMenuAnchorEl, setBdmMenuAnchorEl] = useState<HTMLElement | null>(
+    null
+  );
   const navigate = useNavigate();
   const { logout } = useAuth();
 

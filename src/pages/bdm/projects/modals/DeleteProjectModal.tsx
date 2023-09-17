@@ -1,6 +1,5 @@
 import React from "react";
 import ModalBox from "../../../../common/ModalBox";
-import { useHttp } from "../../../../hooks/useHttp";
 import { toast } from "react-toastify";
 import { Button, Stack, Typography } from "@mui/material";
 import { useProject } from "../../../../hooks/contextHooks";
@@ -17,7 +16,7 @@ const DeleteProjectModal = ({
   const { openedProject, deleteProject } = useProject();
 
   const handleDeleteProject = () => {
-    deleteProject(openedProject.id).then((res) => {
+    deleteProject(openedProject.id).then((res: any) => {
       if (res) {
         closeModal();
         toast.success("Project deleted successfully!");

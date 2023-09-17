@@ -1,4 +1,3 @@
-import { Candidate } from "./Candidate";
 import { Company } from "./Company";
 import { Project } from "./Project";
 

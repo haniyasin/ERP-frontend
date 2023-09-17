@@ -1,3 +1,4 @@
+import { Department } from "./Department";
 import { Project } from "./Project";
 import { Salary } from "./Salary";
 
@@ -8,7 +9,7 @@ export interface User {
   password?: string;
   confirmPassword?: string;
   title?: string;
-  departments?: number[];
+  departments?: Department[];
   salary?: Salary;
   currentSalary?: Salary;
   isContractor?: boolean;

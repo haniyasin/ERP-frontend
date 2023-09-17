@@ -113,9 +113,10 @@ const BasicInfoAccordion = ({ user }: BasicInfoAccordionProps) => {
                 <StyledText variant="h6">Departments:</StyledText>
                 <StyledValueText variant="h6">
                   &nbsp;
-                  {user?.departments.map((department: Department) => (
-                    <span key={department.id}>{department.name}, </span>
-                  ))}
+                  {user.departments &&
+                    user?.departments.map((department: Department) => (
+                      <span key={department.id}>{department.name}, </span>
+                    ))}
                 </StyledValueText>
               </KeyValueContainer>
             </KeyValueColumn>
