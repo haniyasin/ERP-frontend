@@ -17,5 +17,5 @@ export const StyledModalBox = styled(Box)<StyledModalBoxProps>`
   left: ${(props) => props?.left || "50%"};
   width: ${(props) => props?.width || "300px"};
   background-color: ${(props) => props?.bgcolor || "whitesmoke"};
-  transform: ${(props) => props?.transform || "translate(-50%, -50%)"};
+  transform: ${(props) => props?.transform || "translate(-50%, -40%)"};
 `;
