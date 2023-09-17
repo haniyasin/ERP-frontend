@@ -6,19 +6,19 @@ import {
 } from "@mui/material";
 import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import VacantPositionList from "../VacantPositionsList";
+import ProjectsList from "../ProjectsList";
 
-const VacantPositionsAccordion = () => {
+const ProjectsAccordion = () => {
   return (
     <Accordion elevation={0} defaultExpanded={false}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant="h6">Vacant Positions</Typography>
+        <Typography variant="h6">Projects</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <VacantPositionList />
+        <ProjectsList />
       </AccordionDetails>
     </Accordion>
   );
 };
 
-export default VacantPositionsAccordion;
+export default ProjectsAccordion;

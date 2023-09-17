@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import {
   Paper,
   Table,
@@ -23,7 +23,7 @@ const ProjectsList = () => {
     const formattedHeaders = formatHeaders(Object.keys(project));
 
     return formattedHeaders.map((key) => {
-      if (key !== "Id" && key !== "Deleted At")
+      if (key !== "Id" && key !== "Deleted At" && key !== "Open Positions")
         return <CenteredTableCell key={key}>{key}</CenteredTableCell>;
     });
   }, [projects]);
@@ -32,13 +32,21 @@ const ProjectsList = () => {
     (project: Project) => {
       if (projects.length === 0) return null;
       return Object.entries(project).map(([key, value], index) => {
+        if (key === "openPositions") return null;
         if (key === "company")
           return (
             <CenteredTableCell key={index}>
               {value?.name ? value.name : "No Company"}
             </CenteredTableCell>
           );
-        if (key === "projects" || key === "positions")
+
+        if (key === "isActive")
+          return (
+            <CenteredTableCell key={index}>
+              {value ? "Yes" : "No"}
+            </CenteredTableCell>
+          );
+        if (key === "positions" || key === "users")
           return (
             <CenteredTableCell key={index}>{value.length}</CenteredTableCell>
           );

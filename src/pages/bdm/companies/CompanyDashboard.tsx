@@ -8,6 +8,7 @@ import LoadingComponent from "../../../common/LoadingComponent";
 import { handleNotFound } from "../../../routes/ErrorHandler";
 import DeleteCompanyModal from "./modals/DeleteCompanyModal";
 import VacantPositionsAccordion from "./accordions/VacantPositionsAccordion";
+import ProjectsAccordion from "./accordions/ProjectsAccordion";
 
 const CompanyDashboard = () => {
   const [companyExists, setCompanyExists] = useState<boolean>(true);
@@ -55,6 +56,7 @@ const CompanyDashboard = () => {
           </Stack>
           <BasicInfoAccordion />
           <VacantPositionsAccordion />
+          <ProjectsAccordion />
         </Grid>
       </Grid>
     </Container>

@@ -7,12 +7,12 @@ import {
   TableRow
 } from "@mui/material";
 import React, { useCallback, useEffect } from "react";
-import { useCompany, usePosition } from "../../../../hooks/contextHooks";
-import { CenteredTableCell } from "../../../../styles/styled components/CenteredTableCell";
-import { formatHeaders } from "../../../../utils/formatHeaders";
-import { Position } from "../../../../interfaces/Position";
-import { theme } from "../../../../styles/Theme";
-import LoadingComponent from "../../../../common/LoadingComponent";
+import { useCompany, usePosition } from "../../../hooks/contextHooks";
+import { CenteredTableCell } from "../../../styles/styled components/CenteredTableCell";
+import { formatHeaders } from "../../../utils/formatHeaders";
+import { Position } from "../../../interfaces/Position";
+import { theme } from "../../../styles/Theme";
+import LoadingComponent from "../../../common/LoadingComponent";
 
 const VacantPositionList = () => {
   const { positions, getPositionsByCompany, isLoading } = usePosition();
@@ -21,10 +21,6 @@ const VacantPositionList = () => {
   useEffect(() => {
     getPositionsByCompany(clickedCompany.id);
   }, [clickedCompany.id]);
-
-  const vacantPositions = positions.filter(
-    (position: Position) => position.isVacant !== false
-  );
 
   const getColumnHeaders = useCallback(() => {
     if (clickedCompany.positions.length === 0) return null;
