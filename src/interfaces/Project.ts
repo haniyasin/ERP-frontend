@@ -5,5 +5,6 @@ export interface Project {
   openPositions: number;
   name: string;
   description: string;
+  isActive: boolean;
   company: Company;
 }

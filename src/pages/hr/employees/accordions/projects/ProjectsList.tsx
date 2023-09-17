@@ -18,9 +18,10 @@ const ProjectsList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Employee Size</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell>Open Positions</TableCell>
+            <TableCell>Is Active</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -28,9 +29,10 @@ const ProjectsList = () => {
             openedEmployee?.projects !== null &&
             openedEmployee.projects.map((project: Project) => (
               <TableRow key={project.id}>
-                <TableCell>{project.id}</TableCell>
                 <TableCell>{project.name}</TableCell>
+                <TableCell>{project.description}</TableCell>
                 <TableCell>{project.openPositions}</TableCell>
+                <TableCell>{project.isActive ? "Yes" : "No"}</TableCell>
               </TableRow>
             ))}
         </TableBody>

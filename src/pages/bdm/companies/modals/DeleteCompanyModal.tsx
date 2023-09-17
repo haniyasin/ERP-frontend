@@ -18,8 +18,8 @@ const DeleteCompanyModal = ({
   const { clickedCompany, handleCompanyDashboardClose, getCompanies } =
     useCompany();
 
-  const deleteCompany = (name: string) => {
-    del("/companies", { data: { name } }).then((res) => {
+  const deleteCompany = (id: number) => {
+    del(`/companies/${id}`, { id }).then((res) => {
       if (res) {
         getCompanies();
         toast.success("Company deleted successfully!");
@@ -36,7 +36,7 @@ const DeleteCompanyModal = ({
       </Typography>
       <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
         <Button
-          onClick={() => deleteCompany(clickedCompany.name)}
+          onClick={() => deleteCompany(clickedCompany.id)}
           variant="contained"
         >
           Yes

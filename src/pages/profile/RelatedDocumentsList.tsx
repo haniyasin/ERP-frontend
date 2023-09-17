@@ -21,7 +21,6 @@ const EmployeeDocumentList = ({ user }: EmployeeDocumentListProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Document</TableCell>
             <TableCell>Date of Upload</TableCell>
@@ -31,7 +30,6 @@ const EmployeeDocumentList = ({ user }: EmployeeDocumentListProps) => {
           {user.documents !== null &&
             user?.documents.map((employeeDocument: EmployeeDocument) => (
               <TableRow key={employeeDocument.id}>
-                <TableCell>{employeeDocument.id}</TableCell>
                 <TableCell>{employeeDocument.name}</TableCell>
                 <TableCell>
                   <FileDisplay

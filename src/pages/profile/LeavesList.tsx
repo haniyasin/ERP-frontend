@@ -22,7 +22,6 @@ const LeavesList = ({ user }: LeavesListProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>Document</TableCell>
             <TableCell>Start Date</TableCell>
@@ -33,7 +32,6 @@ const LeavesList = ({ user }: LeavesListProps) => {
           {user.leaves !== null &&
             user.leaves.map((leave: Leave) => (
               <TableRow key={leave.id}>
-                <TableCell>{leave.id}</TableCell>
                 <TableCell>{leave.type}</TableCell>
                 <TableCell>
                   <FileDisplay

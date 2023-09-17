@@ -45,7 +45,7 @@ const EmployeesList = () => {
   return (
     <TableContainer
       component={Paper}
-      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+      sx={{ margin: "0 auto", marginBottom: 0, width: "80%" }}
     >
       <Table>
         <TableHead>
@@ -60,7 +60,7 @@ const EmployeesList = () => {
         </TableHead>
         <TableBody>
           {openedProject.users.map((employee: User) => (
-            <TableRow key={employee.name}>{getTableCells(employee)}</TableRow>
+            <TableRow key={employee.id}>{getTableCells(employee)}</TableRow>
           ))}
         </TableBody>
       </Table>

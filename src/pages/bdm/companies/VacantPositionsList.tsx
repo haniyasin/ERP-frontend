@@ -55,7 +55,7 @@ const VacantPositionList = () => {
   return (
     <TableContainer
       component={Paper}
-      sx={{ margin: "0 auto", marginBottom: 10, width: "80%" }}
+      sx={{ margin: "0 auto", marginBottom: 0, width: "80%" }}
     >
       <Table>
         <TableHead>

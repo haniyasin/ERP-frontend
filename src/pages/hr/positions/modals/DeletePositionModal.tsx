@@ -22,7 +22,7 @@ const DeletePositionModal = ({
       if (res) {
         toast.success(res?.data?.message);
         closeModal();
-        navigate("/hr");
+        navigate("/hr/positions");
       }
     });
   };

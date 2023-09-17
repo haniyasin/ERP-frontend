@@ -9,6 +9,7 @@ import { editInvoiceSchema } from "../form-schemas/editInvoiceSchema";
 import InputField from "../../../common/InputField";
 import SelectField from "../../../common/SelectField";
 import {
+  invoiceCategories,
   invoiceCurrencies,
   invoicePaymentTypes
 } from "../../../utils/constants";
@@ -93,11 +94,11 @@ const InvoiceModal = ({ isOpen, closeModal }: NewInvoiceModalProps) => {
                   defaultValue={clickedInvoice.paymentType}
                   readOnly={!isEditInvoiceClicked}
                 />
-                <InputField
+                <SelectField
                   name="category"
                   label="Category"
-                  defaultValue={clickedInvoice.category}
-                  readOnly={!isEditInvoiceClicked}
+                  arrayData={invoiceCategories}
+                  defaultValue="Services"
                 />
                 <SelectField
                   name="client"

@@ -49,7 +49,12 @@ const InvoiceList = () => {
       },
       {
         Header: "Amount",
-        accessor: "amountWithVat"
+        accessor: "amountWithVat",
+        Cell: ({ value, row }: any) => (
+          <CenteredTableCell>
+            {value} {row.original.currency}
+          </CenteredTableCell>
+        )
       },
       {
         Header: "Payment Type",

@@ -20,7 +20,6 @@ const LeavesList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>Document</TableCell>
             <TableCell>Start Date</TableCell>
@@ -31,7 +30,6 @@ const LeavesList = () => {
           {openedEmployee.leaves !== null &&
             openedEmployee.leaves.map((leave: Leave) => (
               <TableRow key={leave.id}>
-                <TableCell>{leave.id}</TableCell>
                 <TableCell>{leave.type}</TableCell>
                 <TableCell>
                   <FileDisplay

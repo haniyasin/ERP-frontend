@@ -20,7 +20,6 @@ const SalariesList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>NET</TableCell>
             <TableCell>GROSS</TableCell>
             <TableCell>Document</TableCell>
@@ -31,7 +30,6 @@ const SalariesList = () => {
           {openedEmployee.salaries !== null &&
             openedEmployee.salaries.map((salary: Salary) => (
               <TableRow key={salary?.id}>
-                <TableCell>{salary?.id}</TableCell>
                 <TableCell>{salary?.net}</TableCell>
                 <TableCell>{salary.gross}</TableCell>
                 <TableCell>

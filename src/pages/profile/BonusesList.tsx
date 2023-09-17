@@ -22,7 +22,6 @@ const BonusesList = ({ user }: BonusesListProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Type</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Document</TableCell>
@@ -33,7 +32,6 @@ const BonusesList = ({ user }: BonusesListProps) => {
           {user.bonuses !== null &&
             user.bonuses.map((bonus: Bonus) => (
               <TableRow key={bonus.id}>
-                <TableCell>{bonus.id}</TableCell>
                 <TableCell>{bonus.type}</TableCell>
                 <TableCell>{bonus.amount}</TableCell>
                 {bonus?.document && (

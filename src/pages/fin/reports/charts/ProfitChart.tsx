@@ -21,7 +21,7 @@ const ProfitChart = () => {
       return {
         date: invoice.createdAt,
         profit:
-          invoice.paymentType === "Payable"
+          invoice.paymentType === "Receivable"
             ? invoice.amountWithVat
             : -invoice.amountWithVat
       };

@@ -16,20 +16,23 @@ interface NewProjectModalProps {
 }
 
 const NewProjectModal = ({ closeModal, isModalOpen }: NewProjectModalProps) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { get, put } = useHttp();
   const { openedEmployee, handleEmployeeDashboardOpen } = useUser();
 
   const getProjects = () => {
-    get("projects").then((res) => {
-      if (res) {
-        setProjects(res.data);
-      }
-    });
+    get("projects")
+      .then((res) => {
+        if (res) {
+          setProjects(res.data);
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const onSubmit = (data: Project) => {
-    put(`projects/${data.id}`, { userId: openedEmployee.id }).then((res) => {
+    put(`projects/addUser/${data.id}`, { userId: openedEmployee.id }).then((res) => {
       if (res) {
         handleEmployeeDashboardOpen({
           ...openedEmployee,
@@ -51,19 +54,29 @@ const NewProjectModal = ({ closeModal, isModalOpen }: NewProjectModalProps) => {
         <Grid container direction="row" justifyContent="center" spacing={2}>
           <Grid item container direction="column" lg={6}>
             <Stack direction="column" spacing={0}>
-              <SelectField
-                name="id"
-                label="Project"
-                defaultValue={[1]}
-                arrayData={projects}
-                getArrayData={getProjects}
-                isLoading={projects.length === 0}
-              />
+              {projects?.length !== 0 ? (
+                <SelectField
+                  name="id"
+                  label="Project"
+                  defaultValue={[1]}
+                  arrayData={projects ? projects : []}
+                  getArrayData={getProjects}
+                  isLoading={isLoading}
+                />
+              ) : (
+                <Typography variant="h6" textAlign="center" color="red">
+                  No Projects found
+                </Typography>
+              )}
             </Stack>
           </Grid>
         </Grid>
         <Stack direction="row" justifyContent="center" spacing={2} mt={3}>
-          <Button type="submit" variant="contained">
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={projects?.length === 0}
+          >
             Add
           </Button>
           <Button onClick={closeModal} variant="contained">
