@@ -9,7 +9,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField
+  TextField,
+  Typography
 } from "@mui/material";
 import { theme } from "../../styles/Theme";
 import { CenteredTableCell } from "../../styles/styled components/CenteredTableCell";
@@ -51,9 +52,9 @@ const InvoiceList = () => {
         Header: "Amount",
         accessor: "amountWithVat",
         Cell: ({ value, row }: any) => (
-          <CenteredTableCell>
+          <Typography variant="subtitle2">
             {value} {row.original.currency}
-          </CenteredTableCell>
+          </Typography>
         )
       },
       {
