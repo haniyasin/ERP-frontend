@@ -7,6 +7,8 @@ import LoadingComponent from "../../../common/LoadingComponent";
 import { handleNotFound } from "../../../routes/ErrorHandler";
 import DeleteProjectModal from "./modals/DeleteProjectModal";
 import BasicInfoAccordion from "./accordions/BasicInfoAccordion";
+import VacantPositionsAccordion from "./accordions/VacantPositionsAccordion";
+import EmployeesAccordion from "./accordions/EmployeesAccordion";
 
 const ProjectInformation = () => {
   const [projectExists, setProjectExists] = useState<boolean>(true);
@@ -53,7 +55,8 @@ const ProjectInformation = () => {
             </Button>
           </Stack>
           <BasicInfoAccordion />
-          {/* <VacantPositionsAccordion /> */}
+          <VacantPositionsAccordion />
+          <EmployeesAccordion />
         </Grid>
       </Grid>
     </Container>

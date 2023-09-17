@@ -13,6 +13,7 @@ export type PositionContextType = {
   positions: Position[];
   getPositions: () => void;
   getPositionsByCompany: (companyId: number) => void;
+  getPositionsByProject: (projectId: number) => void;
   createPosition: (position: Position) => Promise<boolean>;
   editPosition: (position: Position) => Promise<boolean>;
   deletePosition: () => Promise<boolean>;
@@ -60,6 +61,18 @@ const PositionProvider = ({ children }: PositionProviderProps) => {
 
   const getPositionsByCompany = (companyId: number) => {
     get(`/positions/byCompany/${companyId}`).then((res) => {
+      if (res) {
+        const positionsList = res.data.sort(
+          (a: Position, b: Position) => a.id - b.id
+        );
+        setPositions(positionsList);
+        setIsLoading(false);
+      }
+    });
+  };
+
+  const getPositionsByProject = (projectId: number) => {
+    get(`/positions/byProject/${projectId}`).then((res) => {
       if (res) {
         const positionsList = res.data.sort(
           (a: Position, b: Position) => a.id - b.id
@@ -132,6 +145,7 @@ const PositionProvider = ({ children }: PositionProviderProps) => {
     positions,
     getPositions,
     getPositionsByCompany,
+    getPositionsByProject,
     getPositionById,
     createPosition,
     editPosition,
