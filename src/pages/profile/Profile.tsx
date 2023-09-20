@@ -27,10 +27,10 @@ const Profile = () => {
   return (
     <Container sx={{ marginTop: 8 }} className="employee-pic">
       <ToastContainer position="top-center" />
-      <Typography variant="h4" textAlign="center" marginBottom={3}>
+      <Typography variant="h4" textAlign="center" marginTop={15} marginBottom={5}>
         Profile information
       </Typography>
-      <Grid container direction="row" justifyContent="center" spacing={2}>
+      <Grid container direction="row" justifyContent="center" spacing={2} marginBottom={15}>
         <Grid item container direction="column" lg={12}>
           <Stack
             direction="row"

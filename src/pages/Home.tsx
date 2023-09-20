@@ -1,39 +1,14 @@
-import { Box, Container, Typography } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import { MainTitle } from "../styles/styled components/StyledTypographies";
-import styled from "styled-components";
 import companyLogo from "../assets/logo.png";
 import { ToastContainer } from "react-toastify";
-
-const StyledContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 100px;
-`;
-
-const SubTitle = styled(Typography)`
-  font-size: 14px;
-  margin-top: 130px;
-  text-align: center;
-`;
-
-const CenteredContent = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-`;
-
-const CompanyLogoImg = styled.img`
-  width: 300px;
-  height: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 60px;
-`;
+import {
+  StyledContainer,
+  CenteredContent,
+  CompanyLogoImg,
+  SubTitle
+} from "../styles/styled components/HomePageStyles";
 
 const Home = () => {
   return (
